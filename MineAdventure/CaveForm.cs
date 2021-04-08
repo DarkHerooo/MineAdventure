@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace MineAdventure
 {
-    public partial class Form1 : Form
+    public partial class CaveForm : Form
     {
-        public Form1()
+        public CaveForm()
         {
             InitializeComponent();
+        }
+
+        private void CaveForm_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }
