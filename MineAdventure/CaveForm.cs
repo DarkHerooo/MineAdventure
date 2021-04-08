@@ -42,6 +42,7 @@ namespace MineAdventure
                         xPlayer += 50;
                     break;
             }
+            pbPlayer.Location = new Point(xPlayer, yPlayer);
         }
     }
 }
