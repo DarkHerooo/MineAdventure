@@ -19,7 +19,7 @@ namespace MineAdventure
 {
     public partial class CaveForm : Form
     {
-        PictureBox[] block = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
+        PictureBox[] blockArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
 
         public void MovePlayer(int xPlayer, int yPlayer, KeyEventArgs e) // Движение игрока
         {
@@ -51,30 +51,30 @@ namespace MineAdventure
         {
             PictureBox selectedBlock = null;
 
-            for (int i = 0; i < block.Length; i++)
+            for (int i = 0; i < blockArray.Length; i++)
             {
-                int xBlock = block[i].Location.X;
-                int yBlock = block[i].Location.Y;
+                int xBlock = blockArray[i].Location.X;
+                int yBlock = blockArray[i].Location.Y;
 
                 switch (e.KeyValue)
                 {
                     case (char)Keys.Up: // ВВЕРХ
                         if (xBlock == xPlayer && yBlock == yPlayer - 50)
-                            selectedBlock = block[i];
+                            selectedBlock = blockArray[i];
                         break;
 
                     case (char)Keys.Down: // ВНИЗ
                         if (xBlock == xPlayer && yBlock == yPlayer + 50)
-                            selectedBlock = block[i];
+                            selectedBlock = blockArray[i];
                         break;
 
                     case (char)Keys.Left: // ВЛЕВО
                         if (xBlock == xPlayer - 50 && yBlock == yPlayer)
-                            selectedBlock = block[i];
+                            selectedBlock = blockArray[i];
                         break;
                     case (char)Keys.Right: // ВПРАВО
                         if (xBlock == xPlayer + 50 && yBlock == yPlayer)
-                            selectedBlock = block[i];
+                            selectedBlock = blockArray[i];
                         break;
                 }
             }
@@ -108,20 +108,18 @@ namespace MineAdventure
 
             for (int i = 0; i < 100; i++) // Заполнение массива block pbBlock-ами.
             {
-                block[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox;
-                block[i].Tag = 3;
+                blockArray[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox;
+                blockArray[i].Tag = 3;
             }
 
             Random rnd = new Random();
             for (int i = 0; i < 100; i++) // Рандомизация Image в pbBlock-ах.
             {
-                int value = rnd.Next(1, 100);
-                if (value <= 30) block[i].Image = Image.FromFile("../../Images/Blocks/Dirt.png");
-                else if (value > 30 && value <= 55) block[i].Image = Image.FromFile("../../Images/Blocks/Stone.png");
-                else if (value > 55 && value <= 74) block[i].Image = Image.FromFile("../../Images/Blocks/Coal.png");
-                else if (value > 74 && value <= 88) block[i].Image = Image.FromFile("../../Images/Blocks/Iron.png");
-                else if (value > 88 && value <= 97) block[i].Image = Image.FromFile("../../Images/Blocks/Gold.png");
-                else block[i].Image = Image.FromFile("../../Images/Blocks/Diamond.png");
+                int randomNumber = rnd.Next(1, 100);
+                Block block = new Block(randomNumber);
+                blockArray[i].Image = Image.FromFile(block.StrImageBlock);
+                blockArray[i].AccessibleDescription = block.NameBlock;
+                blockArray[i].Tag = block.HealthBlock;
             }
         }
 
