@@ -16,5 +16,11 @@ namespace MineAdventure
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CaveForm caveForm = new CaveForm();
+            caveForm.ShowDialog();
+        }
     }
 }

@@ -19,18 +19,18 @@ namespace MineAdventure
 {
     public partial class CaveForm : Form
     {
+        PictureBox[] block = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
         public CaveForm()
         {
             InitializeComponent();
 
-            PictureBox[] block = new PictureBox[100];
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 100; i++) // Заполнение массива block pbBlock-ами.
             {
                 block[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox;
             }
 
             Random rnd = new Random();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 100; i++) // Рандомизация Image в pbBlock-ах.
             {
                 int value = rnd.Next(1, 100);
                 if (value <= 30) block[i].Image = Image.FromFile("../../Images/Blocks/Dirt.png");
@@ -44,30 +44,30 @@ namespace MineAdventure
 
         private void CaveForm_KeyDown(object sender, KeyEventArgs e)
         {
-            int xPlayer = pbPlayer.Location.X;
-            int yPlayer = pbPlayer.Location.Y;
-            switch (e.KeyValue)
+            int xPlayer = pbPlayer.Location.X; // Координата игрока по оси X.
+            int yPlayer = pbPlayer.Location.Y; // Координата игрока по оси Y.
+            switch (e.KeyValue) // Движение игрока
             {
-                case (char)Keys.Up:
+                case (char)Keys.Up: // ВВЕРХ
                     if (yPlayer > 50)
                         yPlayer -= 50;
                     break;
 
-                case (char)Keys.Down:
+                case (char)Keys.Down: // ВНИЗ
                     if (yPlayer < this.Size.Height - 100)
                         yPlayer += 50;
                     break;
 
-                case (char)Keys.Left:
+                case (char)Keys.Left: // ВЛЕВО
                     if (xPlayer > 50)
                         xPlayer -= 50;
                     break;
-                case (char)Keys.Right:
+                case (char)Keys.Right: // ВПРАВО
                     if (xPlayer < this.Size.Width - 100)
                         xPlayer += 50;
                     break;
             }
-            pbPlayer.Location = new Point(xPlayer, yPlayer);
+            pbPlayer.Location = new Point(xPlayer, yPlayer); // Новые координаты игрока.
         }
     }
 }
