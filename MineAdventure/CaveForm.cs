@@ -20,6 +20,7 @@ namespace MineAdventure
     public partial class CaveForm : Form
     {
         PictureBox[] blockArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
+        PictureBox[] crashArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения crash-ей блоков.
 
         public void MovePlayer(int xPlayer, int yPlayer, KeyEventArgs e) // Движение игрока
         {
@@ -81,20 +82,49 @@ namespace MineAdventure
             return selectedBlock;
         }
 
+        public PictureBox FindCrash(PictureBox selectedBlock) // Поиск блока
+        {
+            PictureBox selectedCrash = null;
+            for (int i = 0; i < crashArray.Length; i++)
+            {
+                if (selectedBlock.Location == crashArray[i].Location)
+                {
+                    selectedCrash = crashArray[i];
+                    selectedCrash.BackgroundImage = selectedBlock.Image;
+                    selectedCrash.Visible = true;
+                    selectedCrash.BringToFront();
+                    break;
+                }
+            }
+            return selectedCrash;
+        }
+
         public bool CrashBlock(PictureBox selectedBlock) // Добыча блока
         {
             bool crashBlock = false;
 
             if (selectedBlock != null && selectedBlock.Visible == true)
             {
-                int healthBlock = int.Parse(selectedBlock.Tag.ToString());
 
+                int healthBlock = int.Parse(selectedBlock.Tag.ToString());
                 healthBlock--;
                 selectedBlock.Tag = healthBlock;
+
+                PictureBox selectedCrash = FindCrash(selectedBlock);
+
+                try
+                {
+                    selectedCrash.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + healthBlock + ".png");
+                }
+                catch { }
+
                 if (healthBlock <= 0)
                 {
                     crashBlock = true;
                     selectedBlock.Visible = false;
+                    selectedCrash.Visible = false;
+                    selectedCrash.Image = Image.FromFile("../../Images/Blocks/BlackBedrock.png");
+                    pbPlayer.BringToFront();
                 }
             }
             else crashBlock = true;
@@ -109,7 +139,14 @@ namespace MineAdventure
             for (int i = 0; i < 100; i++) // Заполнение массива block pbBlock-ами.
             {
                 blockArray[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox;
-                blockArray[i].Tag = 3;
+
+                PictureBox crashBlock = new PictureBox();
+                crashBlock.Location = new Point(blockArray[i].Location.X, blockArray[i].Location.Y);
+                crashBlock.Visible = false;
+                crashBlock.Height = 50;
+                crashBlock.Width = 50;
+                this.Controls.Add(crashBlock);
+                crashArray[i] = crashBlock;
             }
 
             Random rnd = new Random();

@@ -102,12 +102,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Blocks\Bedrock.png" />
+    <Content Include="Images\Blocks\BlackBedrock.png" />
     <Content Include="Images\Blocks\Coal.png" />
     <Content Include="Images\Blocks\Diamond.png" />
     <Content Include="Images\Blocks\Dirt.png" />
     <Content Include="Images\Blocks\Gold.png" />
     <Content Include="Images\Blocks\Iron.png" />
     <Content Include="Images\Blocks\Stone.png" />
+    <Content Include="Images\DestroyStages\DestroyStage1.png" />
+    <Content Include="Images\DestroyStages\DestroyStage10.png" />
+    <Content Include="Images\DestroyStages\DestroyStage2.png" />
+    <Content Include="Images\DestroyStages\DestroyStage3.png" />
+    <Content Include="Images\DestroyStages\DestroyStage4.png" />
+    <Content Include="Images\DestroyStages\DestroyStage5.png" />
+    <Content Include="Images\DestroyStages\DestroyStage6.png" />
+    <Content Include="Images\DestroyStages\DestroyStage7.png" />
+    <Content Include="Images\DestroyStages\DestroyStage8.png" />
+    <Content Include="Images\DestroyStages\DestroyStage9.png" />
     <Content Include="Images\Player\steve.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
