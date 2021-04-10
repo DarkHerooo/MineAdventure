@@ -30,12 +30,10 @@ namespace MineAdventure
                     if (yPlayer > 50)
                         yPlayer -= 50;
                     break;
-
                 case (char)Keys.Down: // ВНИЗ
                     if (yPlayer < this.Size.Height - 100)
                         yPlayer += 50;
                     break;
-
                 case (char)Keys.Left: // ВЛЕВО
                     if (xPlayer > 50)
                         xPlayer -= 50;
@@ -43,9 +41,9 @@ namespace MineAdventure
                 case (char)Keys.Right: // ВПРАВО
                     if (xPlayer < this.Size.Width - 100)
                         xPlayer += 50;
-                    break;
+                    break;  
             }
-            pbPlayer.Location = new Point(xPlayer, yPlayer); // Новые координаты игрока.
+            pbPlayer.Location = new Point(xPlayer, yPlayer);
         }
 
         public PictureBox FindBlock(int xPlayer, int yPlayer, KeyEventArgs e) // Поиск блока
@@ -120,10 +118,8 @@ namespace MineAdventure
 
                 if (healthBlock <= 0)
                 {
-                    crashBlock = true;
                     selectedBlock.Visible = false;
                     selectedCrash.Visible = false;
-                    selectedCrash.Image = Image.FromFile("../../Images/Blocks/BlackBedrock.png");
                     pbPlayer.BringToFront();
                 }
             }
@@ -160,13 +156,14 @@ namespace MineAdventure
             }
         }
 
-        private void CaveForm_KeyDown(object sender, KeyEventArgs e)
+        private void CaveForm_KeyUp(object sender, KeyEventArgs e)
         {
             int xPlayer = pbPlayer.Location.X; // Координата игрока по оси X.
             int yPlayer = pbPlayer.Location.Y; // Координата игрока по оси Y.
 
             bool crashBlock = CrashBlock(FindBlock(xPlayer, yPlayer, e)); // Пытаемся сломать блок
-            if (crashBlock == true) MovePlayer(xPlayer, yPlayer, e); // Движение, если блока нет на пути
+            if (crashBlock)
+                MovePlayer(xPlayer, yPlayer, e); // Движение, если блока нет на пути
         }
     }
 }

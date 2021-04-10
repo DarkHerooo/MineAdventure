@@ -1213,7 +1213,7 @@
             this.Name = "CaveForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CaveForm";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CaveForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CaveForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pbFloor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLowerWall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUpperWall)).EndInit();
