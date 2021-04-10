@@ -8,6 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+// Земля - 30%
+// Камень - 25%
+// Уголь - 19%
+// Железо - 14%
+// Золото - 9%
+// Алмаз - 3%
+
 namespace MineAdventure
 {
     public partial class CaveForm : Form
@@ -15,6 +22,24 @@ namespace MineAdventure
         public CaveForm()
         {
             InitializeComponent();
+
+            PictureBox[] block = new PictureBox[100];
+            for (int i = 0; i < 100; i++)
+            {
+                block[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox;
+            }
+
+            Random rnd = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                int value = rnd.Next(1, 100);
+                if (value <= 30) block[i].Image = Image.FromFile("../../Images/Blocks/Dirt.png");
+                else if (value > 30 && value <= 55) block[i].Image = Image.FromFile("../../Images/Blocks/Stone.png");
+                else if (value > 55 && value <= 74) block[i].Image = Image.FromFile("../../Images/Blocks/Coal.png");
+                else if (value > 74 && value <= 88) block[i].Image = Image.FromFile("../../Images/Blocks/Iron.png");
+                else if (value > 88 && value <= 97) block[i].Image = Image.FromFile("../../Images/Blocks/Gold.png");
+                else block[i].Image = Image.FromFile("../../Images/Blocks/Diamond.png");
+            }
         }
 
         private void CaveForm_KeyDown(object sender, KeyEventArgs e)

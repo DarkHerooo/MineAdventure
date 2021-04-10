@@ -86,9 +86,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Blocks\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Images\Walls\HorisontalWall.png" />
   </ItemGroup>
@@ -99,6 +97,13 @@
     <None Include="Images\Floors\BedrockFloor.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Blocks\Bedrock.png" />
+    <Content Include="Images\Blocks\Coal.png" />
+    <Content Include="Images\Blocks\Diamond.png" />
+    <Content Include="Images\Blocks\Dirt.png" />
+    <Content Include="Images\Blocks\Gold.png" />
+    <Content Include="Images\Blocks\Iron.png" />
+    <Content Include="Images\Blocks\Stone.png" />
     <Content Include="Images\Player\steve.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
