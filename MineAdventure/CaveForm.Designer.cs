@@ -294,6 +294,7 @@
             this.pbBlock0.Size = new System.Drawing.Size(50, 50);
             this.pbBlock0.TabIndex = 6;
             this.pbBlock0.TabStop = false;
+            this.pbBlock0.Tag = "5";
             // 
             // pbBlock1
             // 
