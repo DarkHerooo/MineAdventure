@@ -8,13 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// Земля - 30%
-// Камень - 25%
-// Уголь - 19%
-// Железо - 14%
-// Золото - 9%
-// Алмаз - 3%
-
 namespace MineAdventure
 {
     public partial class CaveForm : Form
@@ -128,33 +121,52 @@ namespace MineAdventure
             return crashBlock;
         }
 
-        public CaveForm()
+        public PictureBox CreateCrashes(PictureBox blockArray) // Создание PictureBox-ов поверх всех блоков.
+        {
+            PictureBox crash = new PictureBox();
+            crash.Location = new Point(blockArray.Location.X, blockArray.Location.Y);
+            crash.Visible = false;
+            crash.Height = 50;
+            crash.Width = 50;
+            this.Controls.Add(crash);
+            return crash;
+        }
+
+        public CaveForm() // Вызов формы CaveForm
         {
             InitializeComponent();
 
-            for (int i = 0; i < 100; i++) // Заполнение массива block pbBlock-ами.
+            for (int i = 0; i < 100; i++) // Заполнение массивов
             {
-                blockArray[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox;
-
-                PictureBox crashBlock = new PictureBox();
-                crashBlock.Location = new Point(blockArray[i].Location.X, blockArray[i].Location.Y);
-                crashBlock.Visible = false;
-                crashBlock.Height = 50;
-                crashBlock.Width = 50;
-                this.Controls.Add(crashBlock);
-                crashArray[i] = crashBlock;
+                blockArray[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox; // Заполнение массива blockArray pbBlock-ами.
+                crashArray[i] = CreateCrashes(blockArray[i]); // Заполнение массива crashArray созданными PictureBox в методе CreateCrashes.
             }
 
             Random rnd = new Random();
             for (int i = 0; i < 100; i++) // Рандомизация Image в pbBlock-ах.
             {
                 int randomNumber = rnd.Next(1, 100);
-                Block block = new Block(randomNumber);
-                blockArray[i].Image = Image.FromFile(block.StrImageBlock);
-                blockArray[i].AccessibleDescription = block.NameBlock;
-                blockArray[i].Tag = block.HealthBlock;
+
+                // Блок - 95%
+                // Моб - 5%
+                if (randomNumber <= 95) // Блок
+                {
+                    randomNumber = rnd.Next(1, 100);
+                    Block block = new Block(randomNumber);
+                    blockArray[i].Image = Image.FromFile(block.StrImageBlock);
+                    blockArray[i].AccessibleDescription = block.NameBlock;
+                    blockArray[i].Tag = block.HealthBlock;
+                }
+                else // Моб
+                {
+                    randomNumber = rnd.Next(1, 100);
+                    Mob mob = new Mob(randomNumber);
+                    blockArray[i].Image = Image.FromFile(mob.StrImageMob);
+                    blockArray[i].AccessibleDescription = mob.NameMob;
+                    blockArray[i].Tag = mob.HealthMob;
+                }
             }
-        }
+        } 
 
         private void CaveForm_KeyUp(object sender, KeyEventArgs e)
         {
@@ -162,8 +174,7 @@ namespace MineAdventure
             int yPlayer = pbPlayer.Location.Y; // Координата игрока по оси Y.
 
             bool crashBlock = CrashBlock(FindBlock(xPlayer, yPlayer, e)); // Пытаемся сломать блок
-            if (crashBlock)
-                MovePlayer(xPlayer, yPlayer, e); // Движение, если блока нет на пути
+            if (crashBlock) MovePlayer(xPlayer, yPlayer, e); // Движение, если блока нет на пути
         }
     }
 }

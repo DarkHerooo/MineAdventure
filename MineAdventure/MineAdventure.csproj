@@ -59,6 +59,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CaveForm.resx">
@@ -119,6 +120,11 @@
     <Content Include="Images\DestroyStages\DestroyStage7.png" />
     <Content Include="Images\DestroyStages\DestroyStage8.png" />
     <Content Include="Images\DestroyStages\DestroyStage9.png" />
+    <Content Include="Images\Mobs\Creeper.png" />
+    <Content Include="Images\Mobs\Enderman.png" />
+    <Content Include="Images\Mobs\Skeleton.png" />
+    <Content Include="Images\Mobs\Spider.png" />
+    <Content Include="Images\Mobs\Zombie.png" />
     <Content Include="Images\Player\steve.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

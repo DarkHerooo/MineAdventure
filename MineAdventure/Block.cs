@@ -14,6 +14,13 @@ namespace MineAdventure
 
         public Block(int randomNumber)
         {
+            // Земля - 30%
+            // Камень - 25%
+            // Уголь - 19%
+            // Железо - 14%
+            // Золото - 9%
+            // Алмаз - 3%
+
             if (randomNumber <= 30)
             {
                 NameBlock = "Dirt";
