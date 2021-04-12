@@ -170,7 +170,7 @@ namespace MineAdventure
                 {
                     randomNumber = rnd.Next(1, 100);
                     Block block = new Block(randomNumber);
-                    blockArray[i].Image = Image.FromFile(block.StrImageBlock);
+                    blockArray[i].Image = Image.FromFile("../../Images/Blocks/"+ block.NameBlock +".png");
                     blockArray[i].AccessibleName = block.NameBlock;
                     blockArray[i].AccessibleDescription = block.TypeBlock;
                     blockArray[i].Tag = block.HealthBlock;
@@ -179,7 +179,7 @@ namespace MineAdventure
                 {
                     randomNumber = rnd.Next(1, 100);
                     Mob mob = new Mob(randomNumber);
-                    blockArray[i].Image = Image.FromFile(mob.StrImageMob);
+                    blockArray[i].Image = Image.FromFile("../../Images/Mobs/" + mob.NameMob + ".png");
                     blockArray[i].AccessibleName = mob.NameMob;
                     blockArray[i].AccessibleDescription = mob.TypeMob;
                     blockArray[i].Tag = mob.HealthMob;
