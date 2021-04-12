@@ -456,6 +456,7 @@
             this.pbPlayer.Size = new System.Drawing.Size(50, 50);
             this.pbPlayer.TabIndex = 5;
             this.pbPlayer.TabStop = false;
+            this.pbPlayer.Tag = "20";
             // 
             // pbBlock39
             // 

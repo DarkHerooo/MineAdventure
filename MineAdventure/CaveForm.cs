@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -73,7 +74,7 @@ namespace MineAdventure
             return selectedBlock;
         }
 
-        public PictureBox FindCrash(PictureBox selectedBlock) // Поиск блока
+        public PictureBox FindCrash(PictureBox selectedBlock) // Поиск трещины
         {
             PictureBox selectedCrash = null;
             for (int i = 0; i < crashArray.Length; i++)
@@ -97,9 +98,17 @@ namespace MineAdventure
             if (selectedBlock != null && selectedBlock.Visible == true)
             {
 
-                int healthBlock = int.Parse(selectedBlock.Tag.ToString());
+                int healthBlock = int.Parse(selectedBlock.Tag.ToString()); // Уменьшаем прочность блока
                 healthBlock--;
                 selectedBlock.Tag = healthBlock;
+
+                Block block = new Block(selectedBlock.AccessibleDescription, selectedBlock.AccessibleName, healthBlock);
+                int healthPlayer = int.Parse(pbPlayer.Tag.ToString()); // Уменьшаем здоровье игрока
+                healthPlayer -= block.PowerBlock;
+                pbPlayer.Tag = healthBlock;
+
+                SoundPlayer sound = new SoundPlayer(block.StrSoundBlock); 
+                sound.Play();
 
                 PictureBox selectedCrash = FindCrash(selectedBlock);
 
@@ -108,6 +117,8 @@ namespace MineAdventure
                     selectedCrash.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + healthBlock + ".png");
                 }
                 catch { }
+
+
 
                 if (healthBlock <= 0)
                 {
@@ -121,7 +132,7 @@ namespace MineAdventure
             return crashBlock;
         }
 
-        public PictureBox CreateCrashes(PictureBox blockArray) // Создание PictureBox-ов поверх всех блоков.
+        public PictureBox CreateCrashes(PictureBox blockArray) // Создание трещин поверх всех блоков.
         {
             PictureBox crash = new PictureBox();
             crash.Location = new Point(blockArray.Location.X, blockArray.Location.Y);
@@ -146,25 +157,12 @@ namespace MineAdventure
             for (int i = 0; i < 100; i++) // Рандомизация Image в pbBlock-ах.
             {
                 int randomNumber = rnd.Next(1, 100);
-
-                // Блок - 95%
-                // Моб - 5%
-                if (randomNumber <= 95) // Блок
-                {
-                    randomNumber = rnd.Next(1, 100);
-                    Block block = new Block(randomNumber);
-                    blockArray[i].Image = Image.FromFile(block.StrImageBlock);
-                    blockArray[i].AccessibleDescription = block.NameBlock;
-                    blockArray[i].Tag = block.HealthBlock;
-                }
-                else // Моб
-                {
-                    randomNumber = rnd.Next(1, 100);
-                    Mob mob = new Mob(randomNumber);
-                    blockArray[i].Image = Image.FromFile(mob.StrImageMob);
-                    blockArray[i].AccessibleDescription = mob.NameMob;
-                    blockArray[i].Tag = mob.HealthMob;
-                }
+                randomNumber = rnd.Next(1, 100);
+                Block block = new Block(randomNumber);
+                blockArray[i].Image = Image.FromFile(block.StrImageBlock);
+                blockArray[i].AccessibleName = block.NameBlock;
+                blockArray[i].AccessibleDescription = block.TypeBlock;
+                blockArray[i].Tag = block.HealthBlock;
             }
         } 
 

@@ -91,7 +91,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Images\Walls\HorisontalWall.png" />
   </ItemGroup>
@@ -126,6 +125,39 @@
     <Content Include="Images\Mobs\Spider.png" />
     <Content Include="Images\Mobs\Zombie.png" />
     <Content Include="Images\Player\steve.png" />
+    <Content Include="Sounds\Blocks\Dirt\Dirt1.mp3" />
+    <Content Include="Sounds\Blocks\Dirt\Dirt2.mp3" />
+    <Content Include="Sounds\Blocks\Dirt\Dirt3.mp3" />
+    <Content Include="Sounds\Blocks\Dirt\Dirt4.mp3" />
+    <Content Include="Sounds\Blocks\Stone\Stone1.mp3" />
+    <Content Include="Sounds\Blocks\Stone\Stone2.mp3" />
+    <Content Include="Sounds\Blocks\Stone\Stone3.mp3" />
+    <Content Include="Sounds\Blocks\Stone\Stone4.mp3" />
+    <Content Include="Sounds\Mobs\Creeper\Death.mp3" />
+    <Content Include="Sounds\Mobs\Creeper\Hurt1.mp3" />
+    <Content Include="Sounds\Mobs\Creeper\Hurt2.mp3" />
+    <Content Include="Sounds\Mobs\Creeper\Hurt3.mp3" />
+    <Content Include="Sounds\Mobs\Creeper\Hurt4.mp3" />
+    <Content Include="Sounds\Mobs\Enderman\Death.mp3" />
+    <Content Include="Sounds\Mobs\Enderman\Hurt1.mp3" />
+    <Content Include="Sounds\Mobs\Enderman\Hurt2.mp3" />
+    <Content Include="Sounds\Mobs\Enderman\Hurt3.mp3" />
+    <Content Include="Sounds\Mobs\Enderman\Hurt4.mp3" />
+    <Content Include="Sounds\Mobs\Skeleton\Death.mp3" />
+    <Content Include="Sounds\Mobs\Skeleton\Hurt1.mp3" />
+    <Content Include="Sounds\Mobs\Skeleton\Hurt2.mp3" />
+    <Content Include="Sounds\Mobs\Skeleton\Hurt3.mp3" />
+    <Content Include="Sounds\Mobs\Skeleton\Hurt4.mp3" />
+    <Content Include="Sounds\Mobs\Spider\Death.mp3" />
+    <Content Include="Sounds\Mobs\Spider\Hurt1.mp3" />
+    <Content Include="Sounds\Mobs\Spider\Hurt2.mp3" />
+    <Content Include="Sounds\Mobs\Spider\Hurt3.mp3" />
+    <Content Include="Sounds\Mobs\Spider\Hurt4.mp3" />
+    <Content Include="Sounds\Mobs\Zombie\Death.mp3" />
+    <Content Include="Sounds\Mobs\Zombie\Hurt1.mp3" />
+    <Content Include="Sounds\Mobs\Zombie\Hurt2.mp3" />
+    <Content Include="Sounds\Mobs\Zombie\Hurt3.mp3" />
+    <Content Include="Sounds\Mobs\Zombie\Hurt4.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
