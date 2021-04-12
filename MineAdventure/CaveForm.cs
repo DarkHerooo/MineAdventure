@@ -102,13 +102,21 @@ namespace MineAdventure
                 healthBlock--;
                 selectedBlock.Tag = healthBlock;
 
-                Block block = new Block(selectedBlock.AccessibleDescription, selectedBlock.AccessibleName, healthBlock);
-                int healthPlayer = int.Parse(pbPlayer.Tag.ToString()); // Уменьшаем здоровье игрока
-                healthPlayer -= block.PowerBlock;
-                pbPlayer.Tag = healthBlock;
-
-                SoundPlayer sound = new SoundPlayer(block.StrSoundBlock); 
-                sound.Play();
+                if (selectedBlock.AccessibleDescription == "Block") // Проверяем, блок или моб
+                {
+                    Block block = new Block(selectedBlock.AccessibleName);
+                    SoundPlayer sound = new SoundPlayer(block.StrSoundBlock);
+                    sound.Play();
+                }
+                else // иначе моб
+                {
+                    Mob mob = new Mob(selectedBlock.AccessibleName, healthBlock);
+                    int healthPlayer = int.Parse(pbPlayer.Tag.ToString()); // Уменьшаем здоровье игрока
+                    healthPlayer -= mob.PowerMob;
+                    pbPlayer.Tag = healthPlayer;
+                    SoundPlayer sound = new SoundPlayer(mob.StrSoundMob);
+                    sound.Play();
+                }
 
                 PictureBox selectedCrash = FindCrash(selectedBlock);
 
@@ -157,12 +165,25 @@ namespace MineAdventure
             for (int i = 0; i < 100; i++) // Рандомизация Image в pbBlock-ах.
             {
                 int randomNumber = rnd.Next(1, 100);
-                randomNumber = rnd.Next(1, 100);
-                Block block = new Block(randomNumber);
-                blockArray[i].Image = Image.FromFile(block.StrImageBlock);
-                blockArray[i].AccessibleName = block.NameBlock;
-                blockArray[i].AccessibleDescription = block.TypeBlock;
-                blockArray[i].Tag = block.HealthBlock;
+
+                if (randomNumber <= 95)
+                {
+                    randomNumber = rnd.Next(1, 100);
+                    Block block = new Block(randomNumber);
+                    blockArray[i].Image = Image.FromFile(block.StrImageBlock);
+                    blockArray[i].AccessibleName = block.NameBlock;
+                    blockArray[i].AccessibleDescription = block.TypeBlock;
+                    blockArray[i].Tag = block.HealthBlock;
+                }
+                else
+                {
+                    randomNumber = rnd.Next(1, 100);
+                    Mob mob = new Mob(randomNumber);
+                    blockArray[i].Image = Image.FromFile(mob.StrImageMob);
+                    blockArray[i].AccessibleName = mob.NameMob;
+                    blockArray[i].AccessibleDescription = mob.TypeMob;
+                    blockArray[i].Tag = mob.HealthMob;
+                }
             }
         } 
 

@@ -8,13 +8,17 @@ namespace MineAdventure
 {
     class Mob
     {
-        public string NameMob;
-        public int HealthMob;
-        public string StrImageMob;
-        public int powerMob;
+        public string NameMob; // Имя блока
+        public string TypeMob; // Тип блока
+        public int HealthMob; // Прочность
+        public int PowerMob; // Сила
+        public string StrImageMob; // Строка картинки
+        public string StrSoundMob; // Строка звука
 
-        public Mob(int randomNumber)
+        public Mob(int randomNumber) // Случайный моб
         {
+            TypeMob = "Mob";
+
             // Зомби - 35%
             // Скелет - 25%
             // Паук - 20%
@@ -53,17 +57,16 @@ namespace MineAdventure
             }
         }
 
-        public Mob(string nameMob)
+        public Mob(string nameBlock, int health) // Звуки мобов
         {
-            switch (nameMob)
+            if (health > 0)
             {
-                case "Zombie": powerMob = 2; break;
-                case "Skeleton": powerMob = 2; break;
-                case "Spider": powerMob = 2; break;
-                case "Creeper": powerMob = 3; break;
-                case "Enderman": powerMob = 4; break;
-                default: powerMob = 0; break;
+                Random rnd = new Random();
+                int randomNumber = rnd.Next(1, 4);
+                StrSoundMob = "../../Sounds/Mobs/" + nameBlock + "/Hurt" + randomNumber + ".wav";
             }
+            else StrSoundMob = "../../Sounds/Mobs/" + nameBlock + "/Death.wav";
         }
+
     }
 }
