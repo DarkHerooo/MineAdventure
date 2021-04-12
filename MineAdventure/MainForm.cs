@@ -15,6 +15,12 @@ namespace MineAdventure
         public MainForm()
         {
             InitializeComponent();
+
+            CaveForm caveForm = new CaveForm();
+            this.Height = caveForm.Size.Height;
+            caveForm.TopLevel = false;
+            this.Controls.Add(caveForm); // Добавление формы в форму
+            caveForm.Show();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace MineAdventure
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CaveForm());
+            Application.Run(new MainForm());
         }
     }
 }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Block.cs" />
     <Compile Include="CaveForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,10 +59,14 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mob.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CaveForm.resx">
       <DependentUpon>CaveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,9 +92,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\Blocks\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Images\Walls\HorisontalWall.png" />
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +101,63 @@
     <None Include="Images\Floors\BedrockFloor.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Blocks\Bedrock.png" />
+    <Content Include="Images\Blocks\BlackBedrock.png" />
+    <Content Include="Images\Blocks\Coal.png" />
+    <Content Include="Images\Blocks\Diamond.png" />
+    <Content Include="Images\Blocks\Dirt.png" />
+    <Content Include="Images\Blocks\Gold.png" />
+    <Content Include="Images\Blocks\Iron.png" />
+    <Content Include="Images\Blocks\Stone.png" />
+    <Content Include="Images\DestroyStages\DestroyStage1.png" />
+    <Content Include="Images\DestroyStages\DestroyStage10.png" />
+    <Content Include="Images\DestroyStages\DestroyStage2.png" />
+    <Content Include="Images\DestroyStages\DestroyStage3.png" />
+    <Content Include="Images\DestroyStages\DestroyStage4.png" />
+    <Content Include="Images\DestroyStages\DestroyStage5.png" />
+    <Content Include="Images\DestroyStages\DestroyStage6.png" />
+    <Content Include="Images\DestroyStages\DestroyStage7.png" />
+    <Content Include="Images\DestroyStages\DestroyStage8.png" />
+    <Content Include="Images\DestroyStages\DestroyStage9.png" />
+    <Content Include="Images\Mobs\Creeper.png" />
+    <Content Include="Images\Mobs\Enderman.png" />
+    <Content Include="Images\Mobs\Skeleton.png" />
+    <Content Include="Images\Mobs\Spider.png" />
+    <Content Include="Images\Mobs\Zombie.png" />
     <Content Include="Images\Player\steve.png" />
+    <Content Include="Sounds\Blocks\Dirt\Dirt1.wav" />
+    <Content Include="Sounds\Blocks\Dirt\Dirt2.wav" />
+    <Content Include="Sounds\Blocks\Dirt\Dirt3.wav" />
+    <Content Include="Sounds\Blocks\Dirt\Dirt4.wav" />
+    <Content Include="Sounds\Blocks\Stone\Stone1.wav" />
+    <Content Include="Sounds\Blocks\Stone\Stone2.wav" />
+    <Content Include="Sounds\Blocks\Stone\Stone3.wav" />
+    <Content Include="Sounds\Blocks\Stone\Stone4.wav" />
+    <Content Include="Sounds\Mobs\Creeper\Death.wav" />
+    <Content Include="Sounds\Mobs\Creeper\Hurt1.wav" />
+    <Content Include="Sounds\Mobs\Creeper\Hurt2.wav" />
+    <Content Include="Sounds\Mobs\Creeper\Hurt3.wav" />
+    <Content Include="Sounds\Mobs\Creeper\Hurt4.wav" />
+    <Content Include="Sounds\Mobs\Enderman\Death.wav" />
+    <Content Include="Sounds\Mobs\Enderman\Hurt1.wav" />
+    <Content Include="Sounds\Mobs\Enderman\Hurt2.wav" />
+    <Content Include="Sounds\Mobs\Enderman\Hurt3.wav" />
+    <Content Include="Sounds\Mobs\Enderman\Hurt4.wav" />
+    <Content Include="Sounds\Mobs\Skeleton\Death.wav" />
+    <Content Include="Sounds\Mobs\Skeleton\Hurt1.wav" />
+    <Content Include="Sounds\Mobs\Skeleton\Hurt2.wav" />
+    <Content Include="Sounds\Mobs\Skeleton\Hurt3.wav" />
+    <Content Include="Sounds\Mobs\Skeleton\Hurt4.wav" />
+    <Content Include="Sounds\Mobs\Spider\Death.wav" />
+    <Content Include="Sounds\Mobs\Spider\Hurt1.wav" />
+    <Content Include="Sounds\Mobs\Spider\Hurt2.wav" />
+    <Content Include="Sounds\Mobs\Spider\Hurt3.wav" />
+    <Content Include="Sounds\Mobs\Spider\Hurt4.wav" />
+    <Content Include="Sounds\Mobs\Zombie\Death.wav" />
+    <Content Include="Sounds\Mobs\Zombie\Hurt1.wav" />
+    <Content Include="Sounds\Mobs\Zombie\Hurt2.wav" />
+    <Content Include="Sounds\Mobs\Zombie\Hurt3.wav" />
+    <Content Include="Sounds\Mobs\Zombie\Hurt4.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
