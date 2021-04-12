@@ -15,12 +15,12 @@ namespace MineAdventure
         public MainForm()
         {
             InitializeComponent();
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
             CaveForm caveForm = new CaveForm();
-            caveForm.ShowDialog();
+            this.Height = caveForm.Size.Height;
+            caveForm.TopLevel = false;
+            this.Controls.Add(caveForm); // Добавление формы в форму
+            caveForm.Show();
         }
     }
 }
