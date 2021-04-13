@@ -60,6 +60,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Mob.cs" />
+    <Compile Include="PlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayerForm.Designer.cs">
+      <DependentUpon>PlayerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CaveForm.resx">
@@ -67,6 +73,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerForm.resx">
+      <DependentUpon>PlayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -125,6 +134,12 @@
     <Content Include="Images\Mobs\Spider.png" />
     <Content Include="Images\Mobs\Zombie.png" />
     <Content Include="Images\Player\steve.png" />
+    <Content Include="Images\Stats\Hearts\FullHeart.png" />
+    <Content Include="Images\Stats\Hearts\HalfHeart.png" />
+    <Content Include="Images\Stats\Hearts\NullHeart.png" />
+    <Content Include="Images\Stats\Knuckles\FullKnuckle.png" />
+    <Content Include="Images\Stats\Knuckles\HalfKnuckle.png" />
+    <Content Include="Images\Stats\Knuckles\NullKnuckle.png" />
     <Content Include="Sounds\Blocks\Dirt\Dirt1.wav" />
     <Content Include="Sounds\Blocks\Dirt\Dirt2.wav" />
     <Content Include="Sounds\Blocks\Dirt\Dirt3.wav" />
@@ -158,6 +173,9 @@
     <Content Include="Sounds\Mobs\Zombie\Hurt2.wav" />
     <Content Include="Sounds\Mobs\Zombie\Hurt3.wav" />
     <Content Include="Sounds\Mobs\Zombie\Hurt4.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Stats\Power\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

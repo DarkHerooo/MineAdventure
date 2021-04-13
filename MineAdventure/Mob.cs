@@ -51,15 +51,29 @@ namespace MineAdventure
             }
         }
 
-        public Mob(string nameBlock, int health) // Звуки мобов
+        private void PowerMobs(string nameMob)
+        {
+            switch (nameMob)
+            {
+                case "Zombie": PowerMob = 1; break;
+                case "Sketeton": PowerMob = 2; break;
+                case "Spider": PowerMob = 3; break;
+                case "Creeper": PowerMob = 4; break;
+                case "Enderman": PowerMob = 5; break;
+                default: PowerMob = 0; break;
+            }
+        }
+
+        public Mob(string nameMob, int health) // Звуки мобов
         {
             if (health > 0)
             {
                 Random rnd = new Random();
                 int randomNumber = rnd.Next(1, 4);
-                StrSoundMob = "../../Sounds/Mobs/" + nameBlock + "/Hurt" + randomNumber + ".wav";
+                StrSoundMob = "../../Sounds/Mobs/" + nameMob + "/Hurt" + randomNumber + ".wav";
+                PowerMobs(nameMob);
             }
-            else StrSoundMob = "../../Sounds/Mobs/" + nameBlock + "/Death.wav";
+            else StrSoundMob = "../../Sounds/Mobs/" + nameMob + "/Death.wav";
         }
 
     }
