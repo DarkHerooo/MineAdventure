@@ -14,7 +14,6 @@ namespace MineAdventure
     public partial class CaveForm : Form
     {
         PictureBox[] blockArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
-        PictureBox[] crashArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения crash-ей блоков.
 
         public void MovePlayer(int xPlayer, int yPlayer, KeyEventArgs e) // Движение игрока
         {
@@ -74,23 +73,6 @@ namespace MineAdventure
             return selectedBlock;
         }
 
-        public PictureBox FindCrash(PictureBox selectedBlock) // Поиск трещины
-        {
-            PictureBox selectedCrash = null;
-            for (int i = 0; i < crashArray.Length; i++)
-            {
-                if (selectedBlock.Location == crashArray[i].Location)
-                {
-                    selectedCrash = crashArray[i];
-                    selectedCrash.BackgroundImage = selectedBlock.Image;
-                    selectedCrash.Visible = true;
-                    selectedCrash.BringToFront();
-                    break;
-                }
-            }
-            return selectedCrash;
-        }
-
         public bool CrashBlock(PictureBox selectedBlock) // Добыча блока
         {
             bool crashBlock = false;
@@ -118,11 +100,9 @@ namespace MineAdventure
                     sound.Play();
                 }
 
-                PictureBox selectedCrash = FindCrash(selectedBlock);
-
                 try
                 {
-                    selectedCrash.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + healthBlock + ".png");
+                    selectedBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + healthBlock + ".png");
                 }
                 catch { }
 
@@ -131,24 +111,12 @@ namespace MineAdventure
                 if (healthBlock <= 0)
                 {
                     selectedBlock.Visible = false;
-                    selectedCrash.Visible = false;
                     pbPlayer.BringToFront();
                 }
             }
             else crashBlock = true;
 
             return crashBlock;
-        }
-
-        public PictureBox CreateCrashes(PictureBox blockArray) // Создание трещин поверх всех блоков.
-        {
-            PictureBox crash = new PictureBox();
-            crash.Location = new Point(blockArray.Location.X, blockArray.Location.Y);
-            crash.Visible = false;
-            crash.Height = 50;
-            crash.Width = 50;
-            this.Controls.Add(crash);
-            return crash;
         }
 
         public CaveForm() // Вызов формы CaveForm
@@ -158,7 +126,6 @@ namespace MineAdventure
             for (int i = 0; i < 100; i++) // Заполнение массивов
             {
                 blockArray[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox; // Заполнение массива blockArray pbBlock-ами.
-                crashArray[i] = CreateCrashes(blockArray[i]); // Заполнение массива crashArray созданными PictureBox в методе CreateCrashes.
             }
 
             Random rnd = new Random();
@@ -170,7 +137,7 @@ namespace MineAdventure
                 {
                     randomNumber = rnd.Next(1, 100);
                     Block block = new Block(randomNumber);
-                    blockArray[i].Image = Image.FromFile("../../Images/Blocks/"+ block.NameBlock +".png");
+                    blockArray[i].BackgroundImage = Image.FromFile("../../Images/Blocks/"+ block.NameBlock +".png");
                     blockArray[i].AccessibleName = block.NameBlock;
                     blockArray[i].AccessibleDescription = block.TypeBlock;
                     blockArray[i].Tag = block.HealthBlock;
@@ -179,7 +146,7 @@ namespace MineAdventure
                 {
                     randomNumber = rnd.Next(1, 100);
                     Mob mob = new Mob(randomNumber);
-                    blockArray[i].Image = Image.FromFile("../../Images/Mobs/" + mob.NameMob + ".png");
+                    blockArray[i].BackgroundImage = Image.FromFile("../../Images/Mobs/" + mob.NameMob + ".png");
                     blockArray[i].AccessibleName = mob.NameMob;
                     blockArray[i].AccessibleDescription = mob.TypeMob;
                     blockArray[i].Tag = mob.HealthMob;
