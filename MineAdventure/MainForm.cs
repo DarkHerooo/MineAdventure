@@ -17,7 +17,7 @@ namespace MineAdventure
             InitializeComponent();
 
             CaveForm caveForm = new CaveForm();
-            this.Height = caveForm.Size.Height;
+            this.Height = caveForm.Size.Height + 50;
             caveForm.TopLevel = false;
             this.Controls.Add(caveForm); // Добавление формы в форму
             caveForm.Show();
