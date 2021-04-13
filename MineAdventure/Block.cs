@@ -11,7 +11,6 @@ namespace MineAdventure
         public string NameBlock; // Имя блока
         public string TypeBlock; // Тип блока
         public int HealthBlock; // Прочность
-        public string StrImageBlock; // Строка картинки
         public string StrSoundBlock; // Строка звука
 
         public Block(int randomNumber) // Случайный блок
@@ -28,37 +27,31 @@ namespace MineAdventure
             {
                 NameBlock = "Dirt";
                 HealthBlock = 3;
-                StrImageBlock = "../../Images/Blocks/Dirt.png";
             }
             else if (randomNumber > 30 && randomNumber <= 55)
             {
                 NameBlock = "Stone";
                 HealthBlock = 5;
-                StrImageBlock = "../../Images/Blocks/Stone.png";
             }
             else if (randomNumber > 55 && randomNumber <= 74)
             {
                 NameBlock = "Coal";
                 HealthBlock = 7;
-                StrImageBlock = "../../Images/Blocks/Coal.png";
             }
             else if (randomNumber > 74 && randomNumber <= 88)
             {
                 NameBlock = "Iron";
                 HealthBlock = 8;
-                StrImageBlock = "../../Images/Blocks/Iron.png";
             }
             else if (randomNumber > 88 && randomNumber <= 97)
             {
                 NameBlock = "Gold";
                 HealthBlock = 9;
-                StrImageBlock = "../../Images/Blocks/Gold.png";
             }
             else
             {
                 NameBlock = "Diamond";
                 HealthBlock = 10;
-                StrImageBlock = "../../Images/Blocks/Diamond.png";
             }
         }
 
