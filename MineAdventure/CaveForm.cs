@@ -16,6 +16,7 @@ namespace MineAdventure
         PictureBox[] blockArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
         PictureBox[] crashArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения crash-ей блоков.
 
+        public PlayerForm playerForm { get; set; }
         public void MovePlayer(int xPlayer, int yPlayer, KeyEventArgs e) // Движение игрока
         {
             switch (e.KeyValue) // Движение игрока
@@ -97,9 +98,10 @@ namespace MineAdventure
 
             if (selectedBlock != null && selectedBlock.Visible == true)
             {
+                int healthPlayer = int.Parse(pbPlayer.Tag.ToString()); // Здоровье игрока
+                int healthBlock = int.Parse(selectedBlock.Tag.ToString()); // Прочность блока
 
-                int healthBlock = int.Parse(selectedBlock.Tag.ToString()); // Уменьшаем прочность блока
-                healthBlock--;
+                healthBlock--; // Уменьшаем прочность блока
                 selectedBlock.Tag = healthBlock;
 
                 if (selectedBlock.AccessibleDescription == "Block") // Проверяем, блок или моб
@@ -111,7 +113,6 @@ namespace MineAdventure
                 else // иначе моб
                 {
                     Mob mob = new Mob(selectedBlock.AccessibleName, healthBlock);
-                    int healthPlayer = int.Parse(pbPlayer.Tag.ToString()); // Уменьшаем здоровье игрока
                     healthPlayer -= mob.PowerMob;
                     pbPlayer.Tag = healthPlayer;
                     SoundPlayer sound = new SoundPlayer(mob.StrSoundMob);
@@ -125,8 +126,6 @@ namespace MineAdventure
                     selectedCrash.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + healthBlock + ".png");
                 }
                 catch { }
-
-
 
                 if (healthBlock <= 0)
                 {
