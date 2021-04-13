@@ -20,7 +20,7 @@ namespace MineAdventure
             this.Height = caveForm.Size.Height + 40;
             caveForm.TopLevel = false;
             this.Controls.Add(caveForm); // Добавление формы в форму
-            caveForm.Show();
+            caveForm.Show(); //
         }
     }
 }
