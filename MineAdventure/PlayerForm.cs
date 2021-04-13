@@ -15,7 +15,7 @@ namespace MineAdventure
         public PictureBox[] healthPlayerArray = new PictureBox[10]; // Здоровье игрока
         PictureBox[] satietyPlayerArray = new PictureBox[10]; // Сытость игрока
 
-
+        
         PictureBox[] healthEnemyArray = new PictureBox[10]; // Здоровье врага
         PictureBox[] powerEnemyArray = new PictureBox[10]; // Сила врага
 
