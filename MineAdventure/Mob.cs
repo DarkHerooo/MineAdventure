@@ -56,7 +56,7 @@ namespace MineAdventure
             switch (nameMob)
             {
                 case "Zombie": PowerMob = 1; break;
-                case "Sketeton": PowerMob = 2; break;
+                case "Skeleton": PowerMob = 2; break;
                 case "Spider": PowerMob = 3; break;
                 case "Creeper": PowerMob = 4; break;
                 case "Enderman": PowerMob = 5; break;

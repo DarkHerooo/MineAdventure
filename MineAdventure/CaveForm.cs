@@ -13,9 +13,9 @@ namespace MineAdventure
 {
     public partial class CaveForm : Form
     {
-        PictureBox[] blockArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
+        Player player = new Player(20, 20); // Создаём игрока.
 
-        public PlayerForm playerForm { get; set; }
+        PictureBox[] blockArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
         public void MovePlayer(int xPlayer, int yPlayer, KeyEventArgs e) // Движение игрока
         {
             switch (e.KeyValue) // Движение игрока
@@ -80,7 +80,6 @@ namespace MineAdventure
 
             if (selectedBlock != null && selectedBlock.Visible == true)
             {
-                int healthPlayer = int.Parse(pbPlayer.Tag.ToString()); // Здоровье игрока
                 int healthBlock = int.Parse(selectedBlock.Tag.ToString()); // Прочность блока
 
                 healthBlock--; // Уменьшаем прочность блока
@@ -95,10 +94,24 @@ namespace MineAdventure
                 else // иначе моб
                 {
                     Mob mob = new Mob(selectedBlock.AccessibleName, healthBlock);
-                    healthPlayer -= mob.PowerMob;
-                    pbPlayer.Tag = healthPlayer;
                     SoundPlayer sound = new SoundPlayer(mob.StrSoundMob);
                     sound.Play();
+
+                    player.HealthPlayer -= mob.PowerMob; // Уменьшаем здоровье игрока
+                    PlayerForm playerForm = this.Owner as PlayerForm;
+
+                    if (player.HealthPlayer >= 0)
+                    {
+                        for (int i = player.HealthPlayer / 2; i < playerForm.healthPlayerArray.Length; i++)
+                        {
+                            if (i == player.HealthPlayer / 2 && player.HealthPlayer % 2 == 1)
+                            {
+                                playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/HalfHeart.png");
+                                continue;
+                            }
+                            playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
+                        }
+                    }
                 }
 
                 try

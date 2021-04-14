@@ -38,7 +38,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.MouseEnter += new System.EventHandler(this.MainForm_MouseEnter);
             this.ResumeLayout(false);
 
         }
