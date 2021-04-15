@@ -1332,7 +1332,6 @@
         private System.Windows.Forms.PictureBox pbUpperWall;
         private System.Windows.Forms.PictureBox pbLowerWall;
         private System.Windows.Forms.PictureBox pbFloor;
-        private System.Windows.Forms.PictureBox pbBlock0;
         private System.Windows.Forms.PictureBox pbBlock1;
         private System.Windows.Forms.PictureBox pbBlock2;
         private System.Windows.Forms.PictureBox pbBlock3;
@@ -1433,5 +1432,6 @@
         private System.Windows.Forms.PictureBox pbBlock81;
         private System.Windows.Forms.PictureBox pbBlock80;
         public System.Windows.Forms.PictureBox pbPlayer;
+        public System.Windows.Forms.PictureBox pbBlock0;
     }
 }

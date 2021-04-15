@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MineAdventure
 {
-    class Block
+    public class Block
     {
+        public PictureBox PbBlock; // Картинка блока
         public string NameBlock; // Имя блока
-        public string TypeBlock; // Тип блока
         public int HealthBlock; // Прочность
         public string StrSoundBlock; // Строка звука
 
-        public Block(int randomNumber) // Случайный блок
+        public Block(int randomNumber, PictureBox pictureBox) // Случайный блок
         {
-            TypeBlock = "Block";
+            PbBlock = pictureBox;
+
             // Земля - 30%
             // Камень - 25%
             // Уголь - 19%
@@ -53,14 +56,17 @@ namespace MineAdventure
                 NameBlock = "Diamond";
                 HealthBlock = 10;
             }
+            PbBlock.BackgroundImage = Image.FromFile("../../Images/Blocks/" + NameBlock + ".png");
         }
 
-        public Block(string nameBlock)
+        public Block(string nameBlock) // Звук блока
         {
             Random rnd = new Random();
             int randomNumber = rnd.Next(1, 4);
             if (nameBlock == "Dirt") StrSoundBlock = "../../Sounds/Blocks/Dirt/Dirt" + randomNumber + ".wav";
             else StrSoundBlock = "../../Sounds/Blocks/Stone/Stone" + randomNumber + ".wav";
         }
+
+        public Block() { }
     }
 }

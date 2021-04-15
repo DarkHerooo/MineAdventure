@@ -13,11 +13,10 @@ namespace MineAdventure
     public partial class PlayerForm : Form
     {
         public PictureBox[] healthPlayerArray = new PictureBox[10]; // Здоровье игрока
-        PictureBox[] satietyPlayerArray = new PictureBox[10]; // Сытость игрока
-
+        public PictureBox[] satietyPlayerArray = new PictureBox[10]; // Сытость игрока
         
-        PictureBox[] healthEnemyArray = new PictureBox[10]; // Здоровье врага
-        PictureBox[] powerEnemyArray = new PictureBox[10]; // Сила врага
+        public PictureBox[] healthEnemyArray = new PictureBox[10]; // Здоровье врага
+        public PictureBox[] powerEnemyArray = new PictureBox[10]; // Сила врага
 
         public PlayerForm()
         {

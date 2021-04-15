@@ -14,8 +14,11 @@ namespace MineAdventure
     public partial class CaveForm : Form
     {
         Player player = new Player(20, 20); // Создаём игрока.
+        PictureBox[] pictureBoxes = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
 
-        PictureBox[] blockArray = new PictureBox[100]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
+        Block[] blocks = new Block[100]; // Массив из блоков
+        Mob[] mobs = new Mob[100]; // Массив из мобов
+
         public void MovePlayer(int xPlayer, int yPlayer, KeyEventArgs e) // Движение игрока
         {
             switch (e.KeyValue) // Движение игрока
@@ -40,90 +43,75 @@ namespace MineAdventure
             pbPlayer.Location = new Point(xPlayer, yPlayer);
         }
 
-        public PictureBox FindBlock(int xPlayer, int yPlayer, KeyEventArgs e) // Поиск блока
+        public bool KeyValue(int xPlayer, int yPlayer, int xPictureBox, int yPictureBox, KeyEventArgs e) // Проверка, с какой стороны объект
         {
-            PictureBox selectedBlock = null;
+            bool keyValue = false;
 
-            for (int i = 0; i < blockArray.Length; i++)
+            switch (e.KeyValue)
             {
-                int xBlock = blockArray[i].Location.X;
-                int yBlock = blockArray[i].Location.Y;
+                case (char)Keys.Up: // ВВЕРХ
+                    if (xPictureBox == xPlayer && yPictureBox == yPlayer - 50)
+                        keyValue = true;
+                    break;
 
-                switch (e.KeyValue)
+                case (char)Keys.Down: // ВНИЗ
+                    if (xPictureBox == xPlayer && yPictureBox == yPlayer + 50)
+                        keyValue = true;
+                    break;
+
+                case (char)Keys.Left: // ВЛЕВО
+                    if (xPictureBox == xPlayer - 50 && yPictureBox == yPlayer)
+                        keyValue = true;
+                    break;
+                case (char)Keys.Right: // ВПРАВО
+                    if (xPictureBox == xPlayer + 50 && yPictureBox == yPlayer)
+                        keyValue = true;
+                    break;
+            }
+
+            return keyValue;
+        }
+
+        public Block FindBlock(int xPlayer, int yPlayer, KeyEventArgs e) // Поиск блока
+        {
+            Block selectedBlock = null;
+            for (int i = 0; i < blocks.Length; i++)
+            {
+                if (blocks[i] == null) break;
+
+                Block block = blocks[i]; // Вытаскиваем блок из массива
+
+                int xBlock = block.PbBlock.Location.X; // Координата блока по оси X
+                int yBlock = block.PbBlock.Location.Y; // Координата блока по оси Y
+
+                bool keyValue = KeyValue(xPlayer, yPlayer, xBlock, yBlock, e);  // Проверяем, с какой стороны блок
+
+                if (keyValue)
                 {
-                    case (char)Keys.Up: // ВВЕРХ
-                        if (xBlock == xPlayer && yBlock == yPlayer - 50)
-                            selectedBlock = blockArray[i];
-                        break;
-
-                    case (char)Keys.Down: // ВНИЗ
-                        if (xBlock == xPlayer && yBlock == yPlayer + 50)
-                            selectedBlock = blockArray[i];
-                        break;
-
-                    case (char)Keys.Left: // ВЛЕВО
-                        if (xBlock == xPlayer - 50 && yBlock == yPlayer)
-                            selectedBlock = blockArray[i];
-                        break;
-                    case (char)Keys.Right: // ВПРАВО
-                        if (xBlock == xPlayer + 50 && yBlock == yPlayer)
-                            selectedBlock = blockArray[i];
-                        break;
+                    selectedBlock = block;
+                    break;
                 }
             }
             return selectedBlock;
         }
 
-        public bool CrashBlock(PictureBox selectedBlock) // Добыча блока
+        public bool CrashBlock(Block selectedBlock) // Добыча блока
         {
             bool crashBlock = false;
 
-            if (selectedBlock != null && selectedBlock.Visible == true)
+            if (selectedBlock != null && selectedBlock.PbBlock.Visible == true)
             {
-                int healthBlock = int.Parse(selectedBlock.Tag.ToString()); // Прочность блока
+                selectedBlock.HealthBlock--;
+                
+                Block block = new Block(selectedBlock.NameBlock);
+                SoundPlayer sound = new SoundPlayer(block.StrSoundBlock);
+                sound.Play();
 
-                healthBlock--; // Уменьшаем прочность блока
-                selectedBlock.Tag = healthBlock;
-
-                if (selectedBlock.AccessibleDescription == "Block") // Проверяем, блок или моб
+                if (selectedBlock.HealthBlock <= 0) selectedBlock.PbBlock.Visible = false;
+                else 
                 {
-                    Block block = new Block(selectedBlock.AccessibleName);
-                    SoundPlayer sound = new SoundPlayer(block.StrSoundBlock);
-                    sound.Play();
-                }
-                else // иначе моб
-                {
-                    Mob mob = new Mob(selectedBlock.AccessibleName, healthBlock);
-                    SoundPlayer sound = new SoundPlayer(mob.StrSoundMob);
-                    sound.Play();
-
-                    player.HealthPlayer -= mob.PowerMob; // Уменьшаем здоровье игрока
-                    PlayerForm playerForm = this.Owner as PlayerForm;
-
-                    if (player.HealthPlayer >= 0)
-                    {
-                        for (int i = player.HealthPlayer / 2; i < playerForm.healthPlayerArray.Length; i++)
-                        {
-                            if (i == player.HealthPlayer / 2 && player.HealthPlayer % 2 == 1)
-                            {
-                                playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/HalfHeart.png");
-                                continue;
-                            }
-                            playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
-                        }
-                    }
-                }
-
-                try
-                {
-                    selectedBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + healthBlock + ".png");
-                }
-                catch { }
-
-                if (healthBlock <= 0)
-                {
-                    selectedBlock.Visible = false;
-                    pbPlayer.BringToFront();
+                    try { selectedBlock.PbBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + selectedBlock.HealthBlock + ".png"); }
+                    catch { }
                 }
             }
             else crashBlock = true;
@@ -131,37 +119,97 @@ namespace MineAdventure
             return crashBlock;
         }
 
+        public Mob FindMob(int xPlayer, int yPlayer, KeyEventArgs e) // Поиск моба
+        {
+            Mob selectedMob = null;
+            for (int i = 0; i < mobs.Length; i++)
+            {
+                if (mobs[i] == null) break;
+
+                Mob mob = mobs[i]; // Вытаскиваем моба из массива
+
+                int xMob = mob.PbMob.Location.X; // Координата моба по оси X
+                int yMob = mob.PbMob.Location.Y; // Координата моба по оси Y
+
+                bool keyValue = KeyValue(xPlayer, yPlayer, xMob, yMob, e);  // Проверяем, с какой стороны моб
+
+                if (keyValue)
+                {
+                    selectedMob = mob;
+                    break;
+                }
+            }
+            return selectedMob;
+        }
+
+        public bool KillMob(Mob selectedMob) // Атака моба
+        {
+            bool killMob = false;
+
+            if (selectedMob != null && selectedMob.PbMob.Visible == true)
+            {
+                selectedMob.HealthMob--;
+
+                Mob mob = new Mob(selectedMob.NameMob, selectedMob.HealthMob);
+                SoundPlayer sound = new SoundPlayer(mob.StrSoundMob);
+                sound.Play();
+
+                player.HealthPlayer -= selectedMob.PowerMob; // Уменьшаем здоровье игрока
+
+                PlayerForm playerForm = this.Owner as PlayerForm;
+                if (player.HealthPlayer >= 0)
+                {
+                    for (int i = player.HealthPlayer / 2; i < playerForm.healthPlayerArray.Length; i++)
+                    {
+                        if (i == player.HealthPlayer / 2 && player.HealthPlayer % 2 == 1)
+                        {
+                            playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/HalfHeart.png");
+                            continue;
+                        }
+                        playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
+                    }
+                }
+
+                if (selectedMob.HealthMob <= 0) selectedMob.PbMob.Visible = false;
+                else
+                {
+                    try { selectedMob.PbMob.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + selectedMob.HealthMob + ".png"); }
+                    catch { }
+                }
+            }
+            else killMob = true;
+
+            return killMob;
+        }
         public CaveForm() // Вызов формы CaveForm
         {
             InitializeComponent();
 
-            for (int i = 0; i < 100; i++) // Заполнение массивов
+            for (int i = 0; i < pictureBoxes.Length; i++)
             {
-                blockArray[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox; // Заполнение массива blockArray pbBlock-ами.
+                pictureBoxes[i] = this.Controls.Find("pbBlock" + i, true).First() as PictureBox; // Заполнение массива blockArray pbBlock-ами.
             }
 
-            Random rnd = new Random();
-            for (int i = 0; i < 100; i++) // Рандомизация Image в pbBlock-ах.
+            int countBlocks = 0; // Счётчик количества блоков
+            int countMobs = 0; // Счётчик количества мобов
+
+            Random rnd = new Random(); // Рандомное число.
+
+            for (int i = 0; i < pictureBoxes.Length; i++)
             {
-                int randomNumber = rnd.Next(1, 100);
+                int randomNumber = rnd.Next(1, 101);
 
                 if (randomNumber <= 95)
                 {
-                    randomNumber = rnd.Next(1, 100);
-                    Block block = new Block(randomNumber);
-                    blockArray[i].BackgroundImage = Image.FromFile("../../Images/Blocks/"+ block.NameBlock +".png");
-                    blockArray[i].AccessibleName = block.NameBlock;
-                    blockArray[i].AccessibleDescription = block.TypeBlock;
-                    blockArray[i].Tag = block.HealthBlock;
+                    randomNumber = rnd.Next(1, 101);
+                    blocks[countBlocks] = new Block(randomNumber, pictureBoxes[i]);
+                    countBlocks++;
                 }
                 else
                 {
-                    randomNumber = rnd.Next(1, 100);
-                    Mob mob = new Mob(randomNumber);
-                    blockArray[i].BackgroundImage = Image.FromFile("../../Images/Mobs/" + mob.NameMob + ".png");
-                    blockArray[i].AccessibleName = mob.NameMob;
-                    blockArray[i].AccessibleDescription = mob.TypeMob;
-                    blockArray[i].Tag = mob.HealthMob;
+                    randomNumber = rnd.Next(1, 101);
+                    mobs[countMobs] = new Mob(randomNumber, pictureBoxes[i]);
+                    countMobs++;
                 }
             }
         } 
@@ -172,7 +220,8 @@ namespace MineAdventure
             int yPlayer = pbPlayer.Location.Y; // Координата игрока по оси Y.
 
             bool crashBlock = CrashBlock(FindBlock(xPlayer, yPlayer, e)); // Пытаемся сломать блок
-            if (crashBlock) MovePlayer(xPlayer, yPlayer, e); // Движение, если блока нет на пути
+            bool killMob = KillMob(FindMob(xPlayer, yPlayer, e)); // Пытаемся убить моба
+            if (crashBlock && killMob) MovePlayer(xPlayer, yPlayer, e); // Движение, если блока и моба нет на пути
         }
     }
 }
