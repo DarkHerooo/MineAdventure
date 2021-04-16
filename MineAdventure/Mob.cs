@@ -10,11 +10,10 @@ namespace MineAdventure
 {
     public class Mob
     {
-        public PictureBox PbMob;
-        public string NameMob; // Имя блока
-        public int HealthMob; // Прочность
+        public PictureBox PbMob; // Картинка моба
+        public string NameMob; // Имя моба
+        public int HealthMob; // Здоровье
         public int PowerMob; // Сила
-        public string StrSoundMob; // Строка звука
 
         public Mob(int randomNumber, PictureBox pictureBox) // Случайный моб
         {
@@ -58,16 +57,5 @@ namespace MineAdventure
             PbMob.BackgroundImage = Image.FromFile("../../Images/Mobs/" + NameMob + ".png");
 
         }
-        public Mob(string nameMob, int health) // Звуки мобов
-        {
-            if (health > 0)
-            {
-                Random rnd = new Random();
-                int randomNumber = rnd.Next(1, 4);
-                StrSoundMob = "../../Sounds/Mobs/" + nameMob + "/Hurt" + randomNumber + ".wav";
-            }
-            else StrSoundMob = "../../Sounds/Mobs/" + nameMob + "/Death.wav";
-        }
-
     }
 }

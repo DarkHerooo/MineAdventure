@@ -709,7 +709,7 @@
         private System.Windows.Forms.PictureBox pbEnemyHeart3;
         private System.Windows.Forms.PictureBox pbEnemyHeart2;
         private System.Windows.Forms.PictureBox pbEnemyHeart1;
-        private System.Windows.Forms.PictureBox pbEnemy;
         private System.Windows.Forms.PictureBox pbEnemyHeart0;
+        public System.Windows.Forms.PictureBox pbEnemy;
     }
 }

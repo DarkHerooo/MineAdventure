@@ -101,16 +101,43 @@ namespace MineAdventure
 
             if (selectedBlock != null && selectedBlock.PbBlock.Visible == true)
             {
-                selectedBlock.HealthBlock--;
-                
-                Block block = new Block(selectedBlock.NameBlock);
-                SoundPlayer sound = new SoundPlayer(block.StrSoundBlock);
-                sound.Play();
+                PlayerForm playerForm = this.Owner as PlayerForm; // Обращаемся к форме PlayerForm
 
-                if (selectedBlock.HealthBlock <= 0) selectedBlock.PbBlock.Visible = false;
-                else 
+                selectedBlock.HealthBlock--;
+
+                if (selectedBlock.NameBlock == "Dirt")
                 {
-                    try { selectedBlock.PbBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + selectedBlock.HealthBlock + ".png"); }
+                    Random rnd = new Random();
+                    int randomNumber = rnd.Next(1, 4);
+                    SoundPlayer sound = new SoundPlayer("../../Sounds/Blocks/Dirt/Dirt" + randomNumber + ".wav");
+                    sound.Play();
+                } // Воспроизводим звук
+                else
+                {
+                    Random rnd = new Random();
+                    int randomNumber = rnd.Next(1, 4);
+                    SoundPlayer sound = new SoundPlayer("../../Sounds/Blocks/Stone/Stone" + randomNumber + ".wav");
+                    sound.Play();
+                }
+
+                playerForm.pEnemy.Visible = true; // Включаем видимость pEnemy (панель врага)
+                playerForm.pbEnemy.BackgroundImage = selectedBlock.PbBlock.BackgroundImage; // Устанавливаем картинку блока
+
+                for (int i = 0; i < playerForm.healthEnemyArray.Length; i++)
+                    playerForm.healthEnemyArray[i].Image = HealthImages(selectedBlock.HealthBlock, i); // Подгружаем картинки прочности блока
+
+                if (selectedBlock.HealthBlock == 0)
+                {
+                    selectedBlock.PbBlock.Visible = false;
+                    playerForm.pEnemy.Visible = false;
+                }
+                else
+                {
+                    try
+                    {
+                        selectedBlock.PbBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + selectedBlock.HealthBlock + ".png");
+                        playerForm.pbEnemy.Image = selectedBlock.PbBlock.Image;
+                    }
                     catch { }
                 }
             }
@@ -142,38 +169,65 @@ namespace MineAdventure
             return selectedMob;
         }
 
+        public Image HealthImages(int health, int i)
+        {
+            if (i < health / 2)
+            {
+                return Image.FromFile("../../Images/Stats/Hearts/FullHeart.png");
+            }
+            if (i == health / 2 && health % 2 == 1)
+            {
+                return Image.FromFile("../../Images/Stats/Hearts/HalfHeart.png");
+            }
+            return Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
+        } // Подгрузка картинок здоровья
+
         public bool KillMob(Mob selectedMob) // Атака моба
         {
             bool killMob = false;
 
             if (selectedMob != null && selectedMob.PbMob.Visible == true)
             {
-                selectedMob.HealthMob--;
-
-                Mob mob = new Mob(selectedMob.NameMob, selectedMob.HealthMob);
-                SoundPlayer sound = new SoundPlayer(mob.StrSoundMob);
-                sound.Play();
+                PlayerForm playerForm = this.Owner as PlayerForm; // Обращаемся к форме PlayerForm
 
                 player.HealthPlayer -= selectedMob.PowerMob; // Уменьшаем здоровье игрока
 
-                PlayerForm playerForm = this.Owner as PlayerForm;
-                if (player.HealthPlayer >= 0)
-                {
-                    for (int i = player.HealthPlayer / 2; i < playerForm.healthPlayerArray.Length; i++)
-                    {
-                        if (i == player.HealthPlayer / 2 && player.HealthPlayer % 2 == 1)
-                        {
-                            playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/HalfHeart.png");
-                            continue;
-                        }
-                        playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
-                    }
-                }
+                for (int i = 0; i < playerForm.healthPlayerArray.Length; i++) 
+                    playerForm.healthPlayerArray[i].Image = HealthImages(player.HealthPlayer, i); // Подгружаем картинки здоровья игрока
 
-                if (selectedMob.HealthMob <= 0) selectedMob.PbMob.Visible = false;
+                playerForm.pEnemy.Visible = true; // Включаем видимость pEnemy (панель врага)
+                playerForm.pbEnemy.BackgroundImage = selectedMob.PbMob.BackgroundImage; // Устанавливаем картинку врага
+
+                selectedMob.HealthMob--; // Уменьшаем здоровье врага
+
+                if (selectedMob.HealthMob > 0) 
+                {
+                    Random rnd = new Random();
+                    int randomNumber = rnd.Next(1, 4);
+                    SoundPlayer sound = new SoundPlayer("../../Sounds/Mobs/" + selectedMob.NameMob + "/Hurt" + randomNumber + ".wav");
+                    sound.Play();
+                } // Воспроизводим звук
                 else
                 {
-                    try { selectedMob.PbMob.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + selectedMob.HealthMob + ".png"); }
+                    SoundPlayer sound = new SoundPlayer("../../Sounds/Mobs/" + selectedMob.NameMob + "/Death.wav");
+                    sound.Play();
+                }
+
+                for (int i = 0; i < playerForm.healthEnemyArray.Length; i++)
+                    playerForm.healthEnemyArray[i].Image = HealthImages(selectedMob.HealthMob, i); // Подгружаем картинки здоровья врага
+
+                if (selectedMob.HealthMob == 0)
+                {
+                    selectedMob.PbMob.Visible = false;
+                    playerForm.pEnemy.Visible = false;
+                }
+                else
+                {
+                    try
+                    {
+                        selectedMob.PbMob.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + selectedMob.HealthMob + ".png");
+                        playerForm.pbEnemy.Image = selectedMob.PbMob.Image;
+                    }
                     catch { }
                 }
             }
