@@ -72,6 +72,32 @@ namespace MineAdventure
             return keyValue;
         }
 
+        public Image HealthImages(int health, int i)
+        {
+            if (i < health / 2)
+            {
+                return Image.FromFile("../../Images/Stats/Hearts/FullHeart.png");
+            }
+            if (i == health / 2 && health % 2 == 1)
+            {
+                return Image.FromFile("../../Images/Stats/Hearts/HalfHeart.png");
+            }
+            return Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
+        } // Подгрузка картинок здоровья
+
+        public Image SwordsImages(int power, int i)
+        {
+            if (i < power / 2)
+            {
+                return Image.FromFile("../../Images/Stats/Swords/FullSword.png");
+            }
+            if (i == power / 2 && power % 2 == 1)
+            {
+                return Image.FromFile("../../Images/Stats/Swords/HalfSword.png");
+            }
+            return Image.FromFile("../../Images/Stats/Swords/NullSword.png");
+        } // Подгрузка картинок силы
+
         public Block FindBlock(int xPlayer, int yPlayer, KeyEventArgs e) // Поиск блока
         {
             Block selectedBlock = null;
@@ -169,19 +195,6 @@ namespace MineAdventure
             return selectedMob;
         }
 
-        public Image HealthImages(int health, int i)
-        {
-            if (i < health / 2)
-            {
-                return Image.FromFile("../../Images/Stats/Hearts/FullHeart.png");
-            }
-            if (i == health / 2 && health % 2 == 1)
-            {
-                return Image.FromFile("../../Images/Stats/Hearts/HalfHeart.png");
-            }
-            return Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
-        } // Подгрузка картинок здоровья
-
         public bool KillMob(Mob selectedMob) // Атака моба
         {
             bool killMob = false;
@@ -216,9 +229,14 @@ namespace MineAdventure
                 for (int i = 0; i < playerForm.healthEnemyArray.Length; i++)
                     playerForm.healthEnemyArray[i].Image = HealthImages(selectedMob.HealthMob, i); // Подгружаем картинки здоровья врага
 
+                playerForm.pEnemyPower.Visible = true; // Включаем видимость pEnemyPower (панель силы врага)
+                for (int i = 0; i < playerForm.powerEnemyArray.Length; i++)
+                    playerForm.powerEnemyArray[i].Image = SwordsImages(selectedMob.PowerMob, i); // Подгружаем картинки силы врага
+
                 if (selectedMob.HealthMob == 0)
                 {
                     selectedMob.PbMob.Visible = false;
+                    playerForm.pEnemyPower.Visible = false;
                     playerForm.pEnemy.Visible = false;
                 }
                 else
@@ -235,6 +253,7 @@ namespace MineAdventure
 
             return killMob;
         }
+
         public CaveForm() // Вызов формы CaveForm
         {
             InitializeComponent();

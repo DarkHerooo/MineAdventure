@@ -141,6 +141,9 @@
     <Content Include="Images\Stats\Knuckles\FullKnuckle.png" />
     <Content Include="Images\Stats\Knuckles\HalfKnuckle.png" />
     <Content Include="Images\Stats\Knuckles\NullKnuckle.png" />
+    <Content Include="Images\Stats\Swords\FullSword.png" />
+    <Content Include="Images\Stats\Swords\HalfSword.png" />
+    <Content Include="Images\Stats\Swords\NullSword.png" />
     <Content Include="Sounds\Blocks\Dirt\Dirt1.wav" />
     <Content Include="Sounds\Blocks\Dirt\Dirt2.wav" />
     <Content Include="Sounds\Blocks\Dirt\Dirt3.wav" />
@@ -175,8 +178,6 @@
     <Content Include="Sounds\Mobs\Zombie\Hurt3.wav" />
     <Content Include="Sounds\Mobs\Zombie\Hurt4.wav" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Stats\Power\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

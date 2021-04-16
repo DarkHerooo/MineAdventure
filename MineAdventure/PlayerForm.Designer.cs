@@ -390,6 +390,7 @@
             this.pEnemyPower.Name = "pEnemyPower";
             this.pEnemyPower.Size = new System.Drawing.Size(250, 25);
             this.pEnemyPower.TabIndex = 2;
+            this.pEnemyPower.Visible = false;
             // 
             // pbEnemyPower9
             // 
@@ -688,7 +689,6 @@
         private System.Windows.Forms.PictureBox pbPlayerHeart1;
         private System.Windows.Forms.PictureBox pbPlayerHeart0;
         public System.Windows.Forms.Panel pEnemy;
-        private System.Windows.Forms.Panel pEnemyPower;
         private System.Windows.Forms.PictureBox pbEnemyPower9;
         private System.Windows.Forms.PictureBox pbEnemyPower8;
         private System.Windows.Forms.PictureBox pbEnemyPower7;
@@ -711,5 +711,6 @@
         private System.Windows.Forms.PictureBox pbEnemyHeart1;
         private System.Windows.Forms.PictureBox pbEnemyHeart0;
         public System.Windows.Forms.PictureBox pbEnemy;
+        public System.Windows.Forms.Panel pEnemyPower;
     }
 }

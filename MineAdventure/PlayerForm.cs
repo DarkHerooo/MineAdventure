@@ -35,7 +35,7 @@ namespace MineAdventure
                 healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/FullHeart.png");
                 satietyPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Knuckles/FullKnuckle.png");
                 healthEnemyArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/FullHeart.png");
-                powerEnemyArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/FullHeart.png");
+                powerEnemyArray[i].Image = Image.FromFile("../../Images/Stats/Swords/FullSword.png");
             }
         }
     }
