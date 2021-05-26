@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,6 @@ namespace MineAdventure
         public PictureBox PbBlock; // Картинка блока
         public string NameBlock; // Имя блока
         public int HealthBlock; // Прочность
-        public string StrSoundBlock; // Строка звука
 
         public Block(int randomNumber, PictureBox pictureBox) // Случайный блок
         {
@@ -59,14 +59,75 @@ namespace MineAdventure
             PbBlock.BackgroundImage = Image.FromFile("../../Images/Blocks/" + NameBlock + ".png");
         }
 
-        public Block(string nameBlock) // Звук блока
+        public bool FindBlock(Point locationPlayer, KeyEventArgs e)
         {
-            Random rnd = new Random();
-            int randomNumber = rnd.Next(1, 4);
-            if (nameBlock == "Dirt") StrSoundBlock = "../../Sounds/Blocks/Dirt/Dirt" + randomNumber + ".wav";
-            else StrSoundBlock = "../../Sounds/Blocks/Stone/Stone" + randomNumber + ".wav";
+            int xPlayer = locationPlayer.X;
+            int yPlayer = locationPlayer.Y;
+
+            switch (e.KeyValue)
+            {
+                case (char)Keys.Up: // ВВЕРХ
+                    if (PbBlock.Location.X == xPlayer && PbBlock.Location.Y == yPlayer - 50)
+                        return true;
+                    break;
+
+                case (char)Keys.Down: // ВНИЗ
+                    if (PbBlock.Location.X == xPlayer && PbBlock.Location.Y == yPlayer + 50)
+                        return true;
+                    break;
+
+                case (char)Keys.Left: // ВЛЕВО
+                    if (PbBlock.Location.X == xPlayer - 50 && PbBlock.Location.Y == yPlayer)
+                        return true;
+                    break;
+
+                case (char)Keys.Right: // ВПРАВО
+                    if (PbBlock.Location.X == xPlayer + 50 && PbBlock.Location.Y == yPlayer)
+                        return true;
+                    break;
+            }
+            return false;
         }
 
-        public Block() { }
+        public bool CrashBlock(Player player)
+        {
+            bool crashBlock = false;
+
+            if (PbBlock.Visible == true)
+            {
+                HealthBlock -= player.powerDig;
+
+                if (NameBlock == "Dirt")
+                {
+                    Random rnd = new Random();
+                    int randomNumber = rnd.Next(1, 4);
+                    SoundPlayer sound = new SoundPlayer("../../Sounds/Blocks/Dirt/Dirt" + randomNumber + ".wav");
+                    sound.Play();
+                }
+                else
+                {
+                    Random rnd = new Random();
+                    int randomNumber = rnd.Next(1, 4);
+                    SoundPlayer sound = new SoundPlayer("../../Sounds/Blocks/Stone/Stone" + randomNumber + ".wav");
+                    sound.Play();
+                }
+
+                if (HealthBlock == 0)
+                {
+                    PbBlock.Visible = false;
+                }
+                else
+                {
+                    try
+                    {
+                        PbBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + HealthBlock + ".png");
+                    }
+                    catch { }
+                }
+            }
+            else crashBlock = true;
+
+            return crashBlock;
+        }
     }
 }

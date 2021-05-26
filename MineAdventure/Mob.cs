@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -56,6 +57,74 @@ namespace MineAdventure
             }
             PbMob.BackgroundImage = Image.FromFile("../../Images/Mobs/" + NameMob + ".png");
 
+        }
+
+        public bool FindMob(Point locationPlayer, KeyEventArgs e)
+        {
+            int xPlayer = locationPlayer.X;
+            int yPlayer = locationPlayer.Y;
+
+            switch (e.KeyValue)
+            {
+                case (char)Keys.Up: // ВВЕРХ
+                    if (PbMob.Location.X == xPlayer && PbMob.Location.Y == yPlayer - 50)
+                        return true;
+                    break;
+
+                case (char)Keys.Down: // ВНИЗ
+                    if (PbMob.Location.X == xPlayer && PbMob.Location.Y == yPlayer + 50)
+                        return true;
+                    break;
+
+                case (char)Keys.Left: // ВЛЕВО
+                    if (PbMob.Location.X == xPlayer - 50 && PbMob.Location.Y == yPlayer)
+                        return true;
+                    break;
+
+                case (char)Keys.Right: // ВПРАВО
+                    if (PbMob.Location.X == xPlayer + 50 && PbMob.Location.Y == yPlayer)
+                        return true;
+                    break;
+            }
+            return false;
+        }
+
+        public bool KillMob(Player player) // Атака моба
+        {
+            bool killMob = false;
+
+            if (PbMob.Visible == true)
+            {
+                player.healthPlayer -= PowerMob; // Уменьшаем здоровье игрока
+                HealthMob -= player.powerHit; // Уменьшаем здоровье врага
+
+                if (HealthMob > 0)
+                {
+                    Random rnd = new Random();
+                    int randomNumber = rnd.Next(1, 4);
+                    SoundPlayer sound = new SoundPlayer("../../Sounds/Mobs/" + NameMob + "/Hurt" + randomNumber + ".wav");
+                    sound.Play();
+                } // Воспроизводим звук
+                else
+                {
+                    SoundPlayer sound = new SoundPlayer("../../Sounds/Mobs/" + NameMob + "/Death.wav");
+                    sound.Play();
+                }
+
+                if (HealthMob == 0)
+                    PbMob.Visible = false;
+                else
+                {
+                    try
+                    {
+                        PbMob.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + HealthMob + ".png");
+                    }
+                    catch { }
+                }
+            }
+            else killMob = true;
+
+            return killMob;
         }
     }
 }
