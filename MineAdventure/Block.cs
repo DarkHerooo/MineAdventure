@@ -11,13 +11,13 @@ namespace MineAdventure
 {
     public class Block
     {
-        public PictureBox PbBlock; // Картинка блока
-        public string NameBlock; // Имя блока
-        public int HealthBlock; // Прочность
+        public PictureBox pbBlock; // Картинка блока
+        public string nameBlock; // Имя блока
+        public int healthBlock; // Прочность
 
         public Block(int randomNumber, PictureBox pictureBox) // Случайный блок
         {
-            PbBlock = pictureBox;
+            pbBlock = pictureBox;
 
             // Земля - 30%
             // Камень - 25%
@@ -28,35 +28,35 @@ namespace MineAdventure
 
             if (randomNumber <= 30)
             {
-                NameBlock = "Dirt";
-                HealthBlock = 3;
+                nameBlock = "Dirt";
+                healthBlock = 3;
             }
             else if (randomNumber > 30 && randomNumber <= 55)
             {
-                NameBlock = "Stone";
-                HealthBlock = 5;
+                nameBlock = "Stone";
+                healthBlock = 5;
             }
             else if (randomNumber > 55 && randomNumber <= 74)
             {
-                NameBlock = "Coal";
-                HealthBlock = 7;
+                nameBlock = "Coal";
+                healthBlock = 7;
             }
             else if (randomNumber > 74 && randomNumber <= 88)
             {
-                NameBlock = "Iron";
-                HealthBlock = 8;
+                nameBlock = "Iron";
+                healthBlock = 8;
             }
             else if (randomNumber > 88 && randomNumber <= 97)
             {
-                NameBlock = "Gold";
-                HealthBlock = 9;
+                nameBlock = "Gold";
+                healthBlock = 9;
             }
             else
             {
-                NameBlock = "Diamond";
-                HealthBlock = 10;
+                nameBlock = "Diamond";
+                healthBlock = 10;
             }
-            PbBlock.BackgroundImage = Image.FromFile("../../Images/Blocks/" + NameBlock + ".png");
+            pbBlock.BackgroundImage = Image.FromFile("../../Images/Blocks/" + nameBlock + ".png");
         }
 
         public bool FindBlock(Point locationPlayer, KeyEventArgs e)
@@ -67,22 +67,22 @@ namespace MineAdventure
             switch (e.KeyValue)
             {
                 case (char)Keys.Up: // ВВЕРХ
-                    if (PbBlock.Location.X == xPlayer && PbBlock.Location.Y == yPlayer - 50)
+                    if (pbBlock.Location.X == xPlayer && pbBlock.Location.Y == yPlayer - 50)
                         return true;
                     break;
 
                 case (char)Keys.Down: // ВНИЗ
-                    if (PbBlock.Location.X == xPlayer && PbBlock.Location.Y == yPlayer + 50)
+                    if (pbBlock.Location.X == xPlayer && pbBlock.Location.Y == yPlayer + 50)
                         return true;
                     break;
 
                 case (char)Keys.Left: // ВЛЕВО
-                    if (PbBlock.Location.X == xPlayer - 50 && PbBlock.Location.Y == yPlayer)
+                    if (pbBlock.Location.X == xPlayer - 50 && pbBlock.Location.Y == yPlayer)
                         return true;
                     break;
 
                 case (char)Keys.Right: // ВПРАВО
-                    if (PbBlock.Location.X == xPlayer + 50 && PbBlock.Location.Y == yPlayer)
+                    if (pbBlock.Location.X == xPlayer + 50 && pbBlock.Location.Y == yPlayer)
                         return true;
                     break;
             }
@@ -93,37 +93,18 @@ namespace MineAdventure
         {
             bool crashBlock = false;
 
-            if (PbBlock.Visible == true)
+            if (healthBlock > 0)
             {
-                HealthBlock -= player.powerDig;
+                healthBlock -= player.powerDig; // Уменьшаем прочность блока
 
-                if (NameBlock == "Dirt")
-                {
-                    Random rnd = new Random();
-                    int randomNumber = rnd.Next(1, 4);
-                    SoundPlayer sound = new SoundPlayer("../../Sounds/Blocks/Dirt/Dirt" + randomNumber + ".wav");
-                    sound.Play();
-                }
-                else
-                {
-                    Random rnd = new Random();
-                    int randomNumber = rnd.Next(1, 4);
-                    SoundPlayer sound = new SoundPlayer("../../Sounds/Blocks/Stone/Stone" + randomNumber + ".wav");
-                    sound.Play();
-                }
+                Sound sound = new Sound(nameBlock, healthBlock); // Звук
+                sound.PlayBlockSound(); // Проигрываем звук
 
-                if (HealthBlock == 0)
-                {
-                    PbBlock.Visible = false;
-                }
-                else
-                {
-                    try
-                    {
-                        PbBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + HealthBlock + ".png");
-                    }
-                    catch { }
-                }
+                if (healthBlock <= 0)
+                    pbBlock.Visible = false;
+                else 
+                    pbBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" +
+                        healthBlock / player.powerDig + ".png");
             }
             else crashBlock = true;
 

@@ -11,14 +11,14 @@ namespace MineAdventure
 {
     public class Mob
     {
-        public PictureBox PbMob; // Картинка моба
-        public string NameMob; // Имя моба
-        public int HealthMob; // Здоровье
-        public int PowerMob; // Сила
+        public PictureBox pbMob; // Картинка моба
+        public string nameMob; // Имя моба
+        public int healthMob; // Здоровье
+        public int powerMob; // Сила
 
         public Mob(int randomNumber, PictureBox pictureBox) // Случайный моб
         {
-            PbMob = pictureBox;
+            pbMob = pictureBox;
             // Зомби - 35%
             // Скелет - 25%
             // Паук - 20%
@@ -27,35 +27,35 @@ namespace MineAdventure
 
             if (randomNumber <= 35)
             {
-                NameMob = "Zombie";
-                HealthMob = 5;
-                PowerMob = 1;
+                nameMob = "Zombie";
+                healthMob = 5;
+                powerMob = 1;
             }
             else if (randomNumber > 35 && randomNumber <= 60)
             {
-                NameMob = "Skeleton";
-                HealthMob = 7;
-                PowerMob = 2;
+                nameMob = "Skeleton";
+                healthMob = 7;
+                powerMob = 2;
             }
             else if (randomNumber > 60 && randomNumber <= 80)
             {
-                NameMob = "Spider";
-                HealthMob = 8;
-                PowerMob = 3;
+                nameMob = "Spider";
+                healthMob = 8;
+                powerMob = 3;
             }
             else if (randomNumber > 80 && randomNumber <= 95)
             {
-                NameMob = "Creeper";
-                HealthMob = 9;
-                PowerMob = 4;
+                nameMob = "Creeper";
+                healthMob = 9;
+                powerMob = 4;
             }
             else
             {
-                NameMob = "Enderman";
-                HealthMob = 10;
-                PowerMob = 5;
+                nameMob = "Enderman";
+                healthMob = 10;
+                powerMob = 5;
             }
-            PbMob.BackgroundImage = Image.FromFile("../../Images/Mobs/" + NameMob + ".png");
+            pbMob.BackgroundImage = Image.FromFile("../../Images/Mobs/" + nameMob + ".png");
 
         }
 
@@ -67,22 +67,22 @@ namespace MineAdventure
             switch (e.KeyValue)
             {
                 case (char)Keys.Up: // ВВЕРХ
-                    if (PbMob.Location.X == xPlayer && PbMob.Location.Y == yPlayer - 50)
+                    if (pbMob.Location.X == xPlayer && pbMob.Location.Y == yPlayer - 50)
                         return true;
                     break;
 
                 case (char)Keys.Down: // ВНИЗ
-                    if (PbMob.Location.X == xPlayer && PbMob.Location.Y == yPlayer + 50)
+                    if (pbMob.Location.X == xPlayer && pbMob.Location.Y == yPlayer + 50)
                         return true;
                     break;
 
                 case (char)Keys.Left: // ВЛЕВО
-                    if (PbMob.Location.X == xPlayer - 50 && PbMob.Location.Y == yPlayer)
+                    if (pbMob.Location.X == xPlayer - 50 && pbMob.Location.Y == yPlayer)
                         return true;
                     break;
 
                 case (char)Keys.Right: // ВПРАВО
-                    if (PbMob.Location.X == xPlayer + 50 && PbMob.Location.Y == yPlayer)
+                    if (pbMob.Location.X == xPlayer + 50 && pbMob.Location.Y == yPlayer)
                         return true;
                     break;
             }
@@ -93,34 +93,19 @@ namespace MineAdventure
         {
             bool killMob = false;
 
-            if (PbMob.Visible == true)
+            if (healthMob > 0)
             {
-                player.healthPlayer -= PowerMob; // Уменьшаем здоровье игрока
-                HealthMob -= player.powerHit; // Уменьшаем здоровье врага
+                player.healthPlayer -= powerMob; // Уменьшаем здоровье игрока
+                healthMob -= player.powerHit; // Уменьшаем здоровье врага
 
-                if (HealthMob > 0)
-                {
-                    Random rnd = new Random();
-                    int randomNumber = rnd.Next(1, 4);
-                    SoundPlayer sound = new SoundPlayer("../../Sounds/Mobs/" + NameMob + "/Hurt" + randomNumber + ".wav");
-                    sound.Play();
-                } // Воспроизводим звук
+                Sound sound = new Sound(nameMob, healthMob); // Звук
+                sound.PlayMobSound(); // Проигрываем звук
+                
+                if (healthMob <= 0)
+                    pbMob.Visible = false;
                 else
-                {
-                    SoundPlayer sound = new SoundPlayer("../../Sounds/Mobs/" + NameMob + "/Death.wav");
-                    sound.Play();
-                }
-
-                if (HealthMob == 0)
-                    PbMob.Visible = false;
-                else
-                {
-                    try
-                    {
-                        PbMob.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" + HealthMob + ".png");
-                    }
-                    catch { }
-                }
+                    pbMob.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" +
+                        healthMob / player.powerHit + ".png");
             }
             else killMob = true;
 
