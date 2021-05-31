@@ -14,38 +14,13 @@ namespace MineAdventure
     public partial class CaveForm : Form
     {
         Player player; // Игрок
+        PlayerForm playerForm;
 
         static int countObjects = 100;
-        PictureBox[] pictureBoxes = new PictureBox[countObjects]; // Массив из объектов PictureBox. Нужен для хранения pbBlock-ов.
+        PictureBox[] pictureBoxes = new PictureBox[countObjects]; // Массив из объектов PictureBox
 
         Block[] blocks = new Block[100]; // Массив из блоков
         Mob[] mobs = new Mob[100]; // Массив из мобов
-
-        public Image HealthImages(int health, int i)
-        {
-            if (i < health / 2)
-            {
-                return Image.FromFile("../../Images/Stats/Hearts/FullHeart.png");
-            }
-            if (i == health / 2 && health % 2 == 1)
-            {
-                return Image.FromFile("../../Images/Stats/Hearts/HalfHeart.png");
-            }
-            return Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
-        } // Подгрузка картинок здоровья
-
-        public Image SwordsImages(int power, int i)
-        {
-            if (i < power / 2)
-            {
-                return Image.FromFile("../../Images/Stats/Swords/FullSword.png");
-            }
-            if (i == power / 2 && power % 2 == 1)
-            {
-                return Image.FromFile("../../Images/Stats/Swords/HalfSword.png");
-            }
-            return Image.FromFile("../../Images/Stats/Swords/NullSword.png");
-        } // Подгрузка картинок силы
 
         public CaveForm() // Вызов формы CaveForm
         {
@@ -82,7 +57,8 @@ namespace MineAdventure
 
         private void CaveForm_KeyUp(object sender, KeyEventArgs e)
         {
-            bool crashBlock = true;
+            bool crashBlock = true; // Сломан ли блок?
+            bool killMob = true; // Убит ли моб?
             for (int i = 0; i < blocks.Length; i++)
             {
                 if (blocks[i] == null) break;
@@ -95,7 +71,7 @@ namespace MineAdventure
                 }
             }
 
-            bool killMob = true;
+            if (crashBlock)
             for (int i = 0; i < mobs.Length; i++)
             {
                 if (mobs[i] == null) break;
@@ -104,11 +80,18 @@ namespace MineAdventure
                 if (findMob)
                 {
                     killMob = mobs[i].KillMob(player);
+                    playerForm.enemyStats(mobs[i].pbMob, mobs[i].healthMob, mobs[i].powerMob);
                     break;
                 }
             }
-
             if (crashBlock && killMob) player.MovePlayer(this, e);
+            playerForm.playerStats(player.healthPlayer, player.satietyPlayer);
+        }
+
+        private void CaveForm_Load(object sender, EventArgs e)
+        {
+            playerForm = this.Owner as PlayerForm;
+            playerForm.playerStats(player.healthPlayer, player.satietyPlayer);
         }
     }
 }

@@ -23,6 +23,7 @@ namespace MineAdventure
             CaveForm caveForm = new CaveForm();
             caveForm.Owner = playerForm; // Устанавливаем родителя, чтобы обращаться к форме playerForm.
             caveForm.TopLevel = false;
+
             this.Controls.Add(caveForm); // Добавление формы в форму
             caveForm.Show();
 
@@ -33,13 +34,5 @@ namespace MineAdventure
             this.Height = caveForm.Size.Height + 40;
             this.Width = caveForm.Size.Width + playerForm.Size.Width + 15;
         }
-
-        /*int healthPlayer = int.Parse(caveForm.pbPlayer.Tag.ToString());
-            for (int i = 0; i<playerForm.healthPlayerArray.Length; i++)
-            {
-                if (i >= healthPlayer)
-                {
-                    playerForm.healthPlayerArray[i].Image = Image.FromFile("../../Images/Stats/Hearts/NullHeart.png");
-                }*/
     }
 }
