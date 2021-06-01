@@ -18,7 +18,12 @@ namespace MineAdventure
         public PictureBox[] heartsEnemy = new PictureBox[10]; // Здоровье врага
         public PictureBox[] powerEnemy = new PictureBox[10]; // Сила врага
 
-        public void playerStats(int health, int satiety)
+        //public Item weaponPlayer; // Оружие игрока
+        //public Item instrumentPlayer; // Инструмент игрока
+        //public Item foodPlayer; // Еда игрока
+        public Item[] items = new Item[27]; // Инвентарь
+
+        public void PlayerStats(int health, int satiety)
         {
             for (int i = 0; i < heartsPlayer.Length; i++)
             {
@@ -38,9 +43,9 @@ namespace MineAdventure
                 else
                     satietyPlayer[i].Image = Image.FromFile("../../Images/Stats/Knuckles/NullKnuckle.png");
             }
-        }
+        } // Характеристики игрока
 
-        public void enemyStats(PictureBox enemy, int health, int power)
+        public void EnemyStats(PictureBox enemy, int health, int power)
         {
             pbEnemy.BackgroundImage = enemy.BackgroundImage;
             pbEnemy.Image = enemy.Image;
@@ -72,8 +77,83 @@ namespace MineAdventure
                 pEnemy.Visible = false;
                 pEnemyPower.Visible = false;
             }
-        }
+        } // Характеристики врага
+        
+        private void DropItem(string name)
+        {
+            bool findItem = false;
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (items[i].nameItem == name)
+                {
+                    findItem = true;
+                    items[i].TakeItem();
+                    break;
+                }
+            }
 
+            if (!findItem)
+            {
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (items[i].nameItem == null)
+                    {
+                        items[i].NewItem(name);
+                        break;
+                    }
+                }
+            }
+        } // Выпадение предмета и попадание в инвентарь
+
+        public void DropSomeItems(string name) // Проверка имени на несколько предметов
+        {
+            switch (name)
+            {
+                case "Dirt": DropItem(name); break;
+                case "Stone": DropItem("Cobblestone"); break;
+                case "CoalOre": DropItem("Coal"); break;
+                case "IronOre": DropItem(name); break;
+                case "GoldOre": DropItem(name); break;
+                case "DiamondOre": DropItem("Diamond"); break;
+                case "Zombie":
+                    {
+                        Random rnd = new Random();
+                        int randomNumber = rnd.Next(1, 100);
+                        if (randomNumber <= 50) DropItem("RottenFlesh");
+                    }; break;
+                case "Skeleton":
+                    {
+                        Random rnd = new Random();
+                        int randomNumber = rnd.Next(1, 100);
+                        if (randomNumber <= 50) DropItem("Bone");
+
+                        randomNumber = rnd.Next(1, 100);
+                        if (randomNumber <= 25) DropItem("Arrow");
+
+                    }; break;
+                case "Spider":
+                    {
+                        Random rnd = new Random();
+                        int randomNumber = rnd.Next(1, 100);
+                        if (randomNumber <= 50) DropItem("Thread");
+
+                        randomNumber = rnd.Next(1, 100);
+                        if (randomNumber <= 25) DropItem("SpiderEye");
+                    } break;
+                case "Creeper":
+                    {
+                        Random rnd = new Random();
+                        int randomNumber = rnd.Next(1, 100);
+                        if (randomNumber <= 25) DropItem("Gunowder");
+                    } break;
+                case "Enderman":
+                    {
+                        Random rnd = new Random();
+                        int randomNumber = rnd.Next(1, 100);
+                        if (randomNumber <= 25) DropItem("EnderPearl");
+                    } break;
+            }
+        }
         public PlayerForm()
         {
             InitializeComponent();
@@ -85,7 +165,17 @@ namespace MineAdventure
                 heartsEnemy[i] = this.Controls.Find("pbEnemyHeart" + i, true).First() as PictureBox;
                 powerEnemy[i] = this.Controls.Find("pbEnemyPower" + i, true).First() as PictureBox;
             }
-            
+            for (int i = 0; i < items.Length; i++)
+            {
+                PictureBox pb = this.Controls.Find("pbItem" + i, true).First() as PictureBox;
+                Label lb = new Label();
+                lb.Location = new Point(pb.Location.X + pb.Size.Width - 10, pb.Location.Y + pb.Size.Height - 10);
+                lb.BackColor = Color.White;
+                lb.AutoSize = true;
+                this.Controls.Add(lb);
+                lb.BringToFront();
+                items[i] = new Item(pb, lb);
+            }
         }
     }
 }

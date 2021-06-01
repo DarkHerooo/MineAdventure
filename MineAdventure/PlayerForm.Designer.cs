@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerForm));
             this.pPlayer = new System.Windows.Forms.Panel();
             this.pPlayerSatiety = new System.Windows.Forms.Panel();
             this.pbPlayerKnuckle9 = new System.Windows.Forms.PictureBox();
@@ -76,6 +77,34 @@
             this.pbEnemyHeart1 = new System.Windows.Forms.PictureBox();
             this.pbEnemyHeart0 = new System.Windows.Forms.PictureBox();
             this.pbEnemy = new System.Windows.Forms.PictureBox();
+            this.pbInventory = new System.Windows.Forms.PictureBox();
+            this.pbItem0 = new System.Windows.Forms.PictureBox();
+            this.pbItem1 = new System.Windows.Forms.PictureBox();
+            this.pbItem2 = new System.Windows.Forms.PictureBox();
+            this.pbItem3 = new System.Windows.Forms.PictureBox();
+            this.pbItem4 = new System.Windows.Forms.PictureBox();
+            this.pbItem5 = new System.Windows.Forms.PictureBox();
+            this.pbItem6 = new System.Windows.Forms.PictureBox();
+            this.pbItem7 = new System.Windows.Forms.PictureBox();
+            this.pbItem8 = new System.Windows.Forms.PictureBox();
+            this.pbItem9 = new System.Windows.Forms.PictureBox();
+            this.pbItem10 = new System.Windows.Forms.PictureBox();
+            this.pbItem11 = new System.Windows.Forms.PictureBox();
+            this.pbItem12 = new System.Windows.Forms.PictureBox();
+            this.pbItem13 = new System.Windows.Forms.PictureBox();
+            this.pbItem14 = new System.Windows.Forms.PictureBox();
+            this.pbItem15 = new System.Windows.Forms.PictureBox();
+            this.pbItem16 = new System.Windows.Forms.PictureBox();
+            this.pbItem17 = new System.Windows.Forms.PictureBox();
+            this.pbItem18 = new System.Windows.Forms.PictureBox();
+            this.pbItem19 = new System.Windows.Forms.PictureBox();
+            this.pbItem20 = new System.Windows.Forms.PictureBox();
+            this.pbItem21 = new System.Windows.Forms.PictureBox();
+            this.pbItem22 = new System.Windows.Forms.PictureBox();
+            this.pbItem23 = new System.Windows.Forms.PictureBox();
+            this.pbItem24 = new System.Windows.Forms.PictureBox();
+            this.pbItem25 = new System.Windows.Forms.PictureBox();
+            this.pbItem26 = new System.Windows.Forms.PictureBox();
             this.pPlayer.SuspendLayout();
             this.pPlayerSatiety.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlayerKnuckle9)).BeginInit();
@@ -124,6 +153,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyHeart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyHeart0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbInventory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem26)).BeginInit();
             this.SuspendLayout();
             // 
             // pPlayer
@@ -599,12 +656,320 @@
             this.pbEnemy.TabIndex = 0;
             this.pbEnemy.TabStop = false;
             // 
+            // pbInventory
+            // 
+            this.pbInventory.BackColor = System.Drawing.Color.Transparent;
+            this.pbInventory.Image = ((System.Drawing.Image)(resources.GetObject("pbInventory.Image")));
+            this.pbInventory.Location = new System.Drawing.Point(46, 485);
+            this.pbInventory.Name = "pbInventory";
+            this.pbInventory.Size = new System.Drawing.Size(307, 115);
+            this.pbInventory.TabIndex = 2;
+            this.pbInventory.TabStop = false;
+            // 
+            // pbItem0
+            // 
+            this.pbItem0.BackColor = System.Drawing.Color.Silver;
+            this.pbItem0.Location = new System.Drawing.Point(59, 498);
+            this.pbItem0.Name = "pbItem0";
+            this.pbItem0.Size = new System.Drawing.Size(25, 25);
+            this.pbItem0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem0.TabIndex = 3;
+            this.pbItem0.TabStop = false;
+            // 
+            // pbItem1
+            // 
+            this.pbItem1.BackColor = System.Drawing.Color.Silver;
+            this.pbItem1.Location = new System.Drawing.Point(91, 498);
+            this.pbItem1.Name = "pbItem1";
+            this.pbItem1.Size = new System.Drawing.Size(25, 25);
+            this.pbItem1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem1.TabIndex = 4;
+            this.pbItem1.TabStop = false;
+            // 
+            // pbItem2
+            // 
+            this.pbItem2.BackColor = System.Drawing.Color.Silver;
+            this.pbItem2.Location = new System.Drawing.Point(123, 498);
+            this.pbItem2.Name = "pbItem2";
+            this.pbItem2.Size = new System.Drawing.Size(25, 25);
+            this.pbItem2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem2.TabIndex = 5;
+            this.pbItem2.TabStop = false;
+            // 
+            // pbItem3
+            // 
+            this.pbItem3.BackColor = System.Drawing.Color.Silver;
+            this.pbItem3.Location = new System.Drawing.Point(155, 498);
+            this.pbItem3.Name = "pbItem3";
+            this.pbItem3.Size = new System.Drawing.Size(25, 25);
+            this.pbItem3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem3.TabIndex = 6;
+            this.pbItem3.TabStop = false;
+            // 
+            // pbItem4
+            // 
+            this.pbItem4.BackColor = System.Drawing.Color.Silver;
+            this.pbItem4.Location = new System.Drawing.Point(187, 498);
+            this.pbItem4.Name = "pbItem4";
+            this.pbItem4.Size = new System.Drawing.Size(25, 25);
+            this.pbItem4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem4.TabIndex = 7;
+            this.pbItem4.TabStop = false;
+            // 
+            // pbItem5
+            // 
+            this.pbItem5.BackColor = System.Drawing.Color.Silver;
+            this.pbItem5.Location = new System.Drawing.Point(219, 498);
+            this.pbItem5.Name = "pbItem5";
+            this.pbItem5.Size = new System.Drawing.Size(25, 25);
+            this.pbItem5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem5.TabIndex = 8;
+            this.pbItem5.TabStop = false;
+            // 
+            // pbItem6
+            // 
+            this.pbItem6.BackColor = System.Drawing.Color.Silver;
+            this.pbItem6.Location = new System.Drawing.Point(251, 498);
+            this.pbItem6.Name = "pbItem6";
+            this.pbItem6.Size = new System.Drawing.Size(25, 25);
+            this.pbItem6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem6.TabIndex = 9;
+            this.pbItem6.TabStop = false;
+            // 
+            // pbItem7
+            // 
+            this.pbItem7.BackColor = System.Drawing.Color.Silver;
+            this.pbItem7.Location = new System.Drawing.Point(283, 498);
+            this.pbItem7.Name = "pbItem7";
+            this.pbItem7.Size = new System.Drawing.Size(25, 25);
+            this.pbItem7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem7.TabIndex = 10;
+            this.pbItem7.TabStop = false;
+            // 
+            // pbItem8
+            // 
+            this.pbItem8.BackColor = System.Drawing.Color.Silver;
+            this.pbItem8.Location = new System.Drawing.Point(315, 498);
+            this.pbItem8.Name = "pbItem8";
+            this.pbItem8.Size = new System.Drawing.Size(25, 25);
+            this.pbItem8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem8.TabIndex = 11;
+            this.pbItem8.TabStop = false;
+            // 
+            // pbItem9
+            // 
+            this.pbItem9.BackColor = System.Drawing.Color.Silver;
+            this.pbItem9.Location = new System.Drawing.Point(59, 530);
+            this.pbItem9.Name = "pbItem9";
+            this.pbItem9.Size = new System.Drawing.Size(25, 25);
+            this.pbItem9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem9.TabIndex = 12;
+            this.pbItem9.TabStop = false;
+            // 
+            // pbItem10
+            // 
+            this.pbItem10.BackColor = System.Drawing.Color.Silver;
+            this.pbItem10.Location = new System.Drawing.Point(91, 530);
+            this.pbItem10.Name = "pbItem10";
+            this.pbItem10.Size = new System.Drawing.Size(25, 25);
+            this.pbItem10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem10.TabIndex = 13;
+            this.pbItem10.TabStop = false;
+            // 
+            // pbItem11
+            // 
+            this.pbItem11.BackColor = System.Drawing.Color.Silver;
+            this.pbItem11.Location = new System.Drawing.Point(123, 530);
+            this.pbItem11.Name = "pbItem11";
+            this.pbItem11.Size = new System.Drawing.Size(25, 25);
+            this.pbItem11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem11.TabIndex = 14;
+            this.pbItem11.TabStop = false;
+            // 
+            // pbItem12
+            // 
+            this.pbItem12.BackColor = System.Drawing.Color.Silver;
+            this.pbItem12.Location = new System.Drawing.Point(155, 530);
+            this.pbItem12.Name = "pbItem12";
+            this.pbItem12.Size = new System.Drawing.Size(25, 25);
+            this.pbItem12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem12.TabIndex = 15;
+            this.pbItem12.TabStop = false;
+            // 
+            // pbItem13
+            // 
+            this.pbItem13.BackColor = System.Drawing.Color.Silver;
+            this.pbItem13.Location = new System.Drawing.Point(187, 530);
+            this.pbItem13.Name = "pbItem13";
+            this.pbItem13.Size = new System.Drawing.Size(25, 25);
+            this.pbItem13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem13.TabIndex = 16;
+            this.pbItem13.TabStop = false;
+            // 
+            // pbItem14
+            // 
+            this.pbItem14.BackColor = System.Drawing.Color.Silver;
+            this.pbItem14.Location = new System.Drawing.Point(219, 530);
+            this.pbItem14.Name = "pbItem14";
+            this.pbItem14.Size = new System.Drawing.Size(25, 25);
+            this.pbItem14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem14.TabIndex = 17;
+            this.pbItem14.TabStop = false;
+            // 
+            // pbItem15
+            // 
+            this.pbItem15.BackColor = System.Drawing.Color.Silver;
+            this.pbItem15.Location = new System.Drawing.Point(251, 530);
+            this.pbItem15.Name = "pbItem15";
+            this.pbItem15.Size = new System.Drawing.Size(25, 25);
+            this.pbItem15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem15.TabIndex = 18;
+            this.pbItem15.TabStop = false;
+            // 
+            // pbItem16
+            // 
+            this.pbItem16.BackColor = System.Drawing.Color.Silver;
+            this.pbItem16.Location = new System.Drawing.Point(283, 530);
+            this.pbItem16.Name = "pbItem16";
+            this.pbItem16.Size = new System.Drawing.Size(25, 25);
+            this.pbItem16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem16.TabIndex = 19;
+            this.pbItem16.TabStop = false;
+            // 
+            // pbItem17
+            // 
+            this.pbItem17.BackColor = System.Drawing.Color.Silver;
+            this.pbItem17.Location = new System.Drawing.Point(315, 530);
+            this.pbItem17.Name = "pbItem17";
+            this.pbItem17.Size = new System.Drawing.Size(25, 25);
+            this.pbItem17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem17.TabIndex = 20;
+            this.pbItem17.TabStop = false;
+            // 
+            // pbItem18
+            // 
+            this.pbItem18.BackColor = System.Drawing.Color.Silver;
+            this.pbItem18.Location = new System.Drawing.Point(59, 562);
+            this.pbItem18.Name = "pbItem18";
+            this.pbItem18.Size = new System.Drawing.Size(25, 25);
+            this.pbItem18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem18.TabIndex = 21;
+            this.pbItem18.TabStop = false;
+            // 
+            // pbItem19
+            // 
+            this.pbItem19.BackColor = System.Drawing.Color.Silver;
+            this.pbItem19.Location = new System.Drawing.Point(91, 562);
+            this.pbItem19.Name = "pbItem19";
+            this.pbItem19.Size = new System.Drawing.Size(25, 25);
+            this.pbItem19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem19.TabIndex = 22;
+            this.pbItem19.TabStop = false;
+            // 
+            // pbItem20
+            // 
+            this.pbItem20.BackColor = System.Drawing.Color.Silver;
+            this.pbItem20.Location = new System.Drawing.Point(123, 562);
+            this.pbItem20.Name = "pbItem20";
+            this.pbItem20.Size = new System.Drawing.Size(25, 25);
+            this.pbItem20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem20.TabIndex = 23;
+            this.pbItem20.TabStop = false;
+            // 
+            // pbItem21
+            // 
+            this.pbItem21.BackColor = System.Drawing.Color.Silver;
+            this.pbItem21.Location = new System.Drawing.Point(155, 562);
+            this.pbItem21.Name = "pbItem21";
+            this.pbItem21.Size = new System.Drawing.Size(25, 25);
+            this.pbItem21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem21.TabIndex = 24;
+            this.pbItem21.TabStop = false;
+            // 
+            // pbItem22
+            // 
+            this.pbItem22.BackColor = System.Drawing.Color.Silver;
+            this.pbItem22.Location = new System.Drawing.Point(187, 562);
+            this.pbItem22.Name = "pbItem22";
+            this.pbItem22.Size = new System.Drawing.Size(25, 25);
+            this.pbItem22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem22.TabIndex = 25;
+            this.pbItem22.TabStop = false;
+            // 
+            // pbItem23
+            // 
+            this.pbItem23.BackColor = System.Drawing.Color.Silver;
+            this.pbItem23.Location = new System.Drawing.Point(219, 562);
+            this.pbItem23.Name = "pbItem23";
+            this.pbItem23.Size = new System.Drawing.Size(25, 25);
+            this.pbItem23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem23.TabIndex = 26;
+            this.pbItem23.TabStop = false;
+            // 
+            // pbItem24
+            // 
+            this.pbItem24.BackColor = System.Drawing.Color.Silver;
+            this.pbItem24.Location = new System.Drawing.Point(251, 562);
+            this.pbItem24.Name = "pbItem24";
+            this.pbItem24.Size = new System.Drawing.Size(25, 25);
+            this.pbItem24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem24.TabIndex = 27;
+            this.pbItem24.TabStop = false;
+            // 
+            // pbItem25
+            // 
+            this.pbItem25.BackColor = System.Drawing.Color.Silver;
+            this.pbItem25.Location = new System.Drawing.Point(283, 562);
+            this.pbItem25.Name = "pbItem25";
+            this.pbItem25.Size = new System.Drawing.Size(25, 25);
+            this.pbItem25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem25.TabIndex = 28;
+            this.pbItem25.TabStop = false;
+            // 
+            // pbItem26
+            // 
+            this.pbItem26.BackColor = System.Drawing.Color.Silver;
+            this.pbItem26.Location = new System.Drawing.Point(315, 562);
+            this.pbItem26.Name = "pbItem26";
+            this.pbItem26.Size = new System.Drawing.Size(25, 25);
+            this.pbItem26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbItem26.TabIndex = 29;
+            this.pbItem26.TabStop = false;
+            // 
             // PlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::MineAdventure.Properties.Resources.BedrockFloor;
             this.ClientSize = new System.Drawing.Size(400, 650);
+            this.Controls.Add(this.pbItem26);
+            this.Controls.Add(this.pbItem25);
+            this.Controls.Add(this.pbItem24);
+            this.Controls.Add(this.pbItem23);
+            this.Controls.Add(this.pbItem22);
+            this.Controls.Add(this.pbItem21);
+            this.Controls.Add(this.pbItem20);
+            this.Controls.Add(this.pbItem19);
+            this.Controls.Add(this.pbItem18);
+            this.Controls.Add(this.pbItem17);
+            this.Controls.Add(this.pbItem16);
+            this.Controls.Add(this.pbItem15);
+            this.Controls.Add(this.pbItem14);
+            this.Controls.Add(this.pbItem13);
+            this.Controls.Add(this.pbItem12);
+            this.Controls.Add(this.pbItem11);
+            this.Controls.Add(this.pbItem10);
+            this.Controls.Add(this.pbItem9);
+            this.Controls.Add(this.pbItem8);
+            this.Controls.Add(this.pbItem7);
+            this.Controls.Add(this.pbItem6);
+            this.Controls.Add(this.pbItem5);
+            this.Controls.Add(this.pbItem4);
+            this.Controls.Add(this.pbItem3);
+            this.Controls.Add(this.pbItem2);
+            this.Controls.Add(this.pbItem1);
+            this.Controls.Add(this.pbItem0);
+            this.Controls.Add(this.pbInventory);
             this.Controls.Add(this.pEnemy);
             this.Controls.Add(this.pPlayer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -658,6 +1023,34 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyHeart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyHeart0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbInventory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbItem26)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -712,5 +1105,33 @@
         private System.Windows.Forms.PictureBox pbEnemyHeart0;
         public System.Windows.Forms.PictureBox pbEnemy;
         public System.Windows.Forms.Panel pEnemyPower;
+        private System.Windows.Forms.PictureBox pbInventory;
+        private System.Windows.Forms.PictureBox pbItem0;
+        private System.Windows.Forms.PictureBox pbItem1;
+        private System.Windows.Forms.PictureBox pbItem2;
+        private System.Windows.Forms.PictureBox pbItem3;
+        private System.Windows.Forms.PictureBox pbItem4;
+        private System.Windows.Forms.PictureBox pbItem5;
+        private System.Windows.Forms.PictureBox pbItem6;
+        private System.Windows.Forms.PictureBox pbItem7;
+        private System.Windows.Forms.PictureBox pbItem8;
+        private System.Windows.Forms.PictureBox pbItem9;
+        private System.Windows.Forms.PictureBox pbItem10;
+        private System.Windows.Forms.PictureBox pbItem11;
+        private System.Windows.Forms.PictureBox pbItem12;
+        private System.Windows.Forms.PictureBox pbItem13;
+        private System.Windows.Forms.PictureBox pbItem14;
+        private System.Windows.Forms.PictureBox pbItem15;
+        private System.Windows.Forms.PictureBox pbItem16;
+        private System.Windows.Forms.PictureBox pbItem17;
+        private System.Windows.Forms.PictureBox pbItem18;
+        private System.Windows.Forms.PictureBox pbItem19;
+        private System.Windows.Forms.PictureBox pbItem20;
+        private System.Windows.Forms.PictureBox pbItem21;
+        private System.Windows.Forms.PictureBox pbItem22;
+        private System.Windows.Forms.PictureBox pbItem23;
+        private System.Windows.Forms.PictureBox pbItem24;
+        private System.Windows.Forms.PictureBox pbItem25;
+        private System.Windows.Forms.PictureBox pbItem26;
     }
 }

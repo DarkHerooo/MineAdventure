@@ -66,7 +66,7 @@ namespace MineAdventure
                 bool findBlock = blocks[i].FindBlock(pbPlayer.Location, e);
                 if (findBlock)
                 {
-                    crashBlock = blocks[i].CrashBlock(player);
+                    crashBlock = blocks[i].CrashBlock(player, playerForm);
                     break;
                 }
             }
@@ -79,19 +79,19 @@ namespace MineAdventure
                 bool findMob = mobs[i].FindMob(pbPlayer.Location, e);
                 if (findMob)
                 {
-                    killMob = mobs[i].KillMob(player);
-                    playerForm.enemyStats(mobs[i].pbMob, mobs[i].healthMob, mobs[i].powerMob);
+                    killMob = mobs[i].KillMob(player, playerForm);
+                    playerForm.EnemyStats(mobs[i].pbMob, mobs[i].healthMob, mobs[i].powerMob);
                     break;
                 }
             }
             if (crashBlock && killMob) player.MovePlayer(this, e);
-            playerForm.playerStats(player.healthPlayer, player.satietyPlayer);
+            playerForm.PlayerStats(player.healthPlayer, player.satietyPlayer);
         }
 
         private void CaveForm_Load(object sender, EventArgs e)
         {
             playerForm = this.Owner as PlayerForm;
-            playerForm.playerStats(player.healthPlayer, player.satietyPlayer);
+            playerForm.PlayerStats(player.healthPlayer, player.satietyPlayer);
         }
     }
 }

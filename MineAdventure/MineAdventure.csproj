@@ -53,6 +53,7 @@
     <Compile Include="CaveForm.Designer.cs">
       <DependentUpon>CaveForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,10 +116,14 @@
     <Content Include="Images\Blocks\Bedrock.png" />
     <Content Include="Images\Blocks\BlackBedrock.png" />
     <Content Include="Images\Blocks\Coal.png" />
+    <Content Include="Images\Blocks\CoalOre.png" />
     <Content Include="Images\Blocks\Diamond.png" />
+    <Content Include="Images\Blocks\DiamondOre.png" />
     <Content Include="Images\Blocks\Dirt.png" />
     <Content Include="Images\Blocks\Gold.png" />
+    <Content Include="Images\Blocks\GoldOre.png" />
     <Content Include="Images\Blocks\Iron.png" />
+    <Content Include="Images\Blocks\IronOre.png" />
     <Content Include="Images\Blocks\Stone.png" />
     <Content Include="Images\DestroyStages\DestroyStage1.png" />
     <Content Include="Images\DestroyStages\DestroyStage10.png" />
@@ -130,6 +135,12 @@
     <Content Include="Images\DestroyStages\DestroyStage7.png" />
     <Content Include="Images\DestroyStages\DestroyStage8.png" />
     <Content Include="Images\DestroyStages\DestroyStage9.png" />
+    <Content Include="Images\Items\Coal.png" />
+    <Content Include="Images\Items\Diamond.png" />
+    <Content Include="Images\Items\Inventory.png" />
+    <Content Include="Images\Items\Other\Inventory.png" />
+    <Content Include="Images\Items\Other\Solo.png" />
+    <Content Include="Images\Items\Solo.png" />
     <Content Include="Images\Mobs\Creeper.png" />
     <Content Include="Images\Mobs\Enderman.png" />
     <Content Include="Images\Mobs\Skeleton.png" />

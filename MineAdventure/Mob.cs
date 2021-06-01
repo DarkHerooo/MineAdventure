@@ -19,6 +19,7 @@ namespace MineAdventure
         public Mob(int randomNumber, PictureBox pictureBox) // Случайный моб
         {
             pbMob = pictureBox;
+
             // Зомби - 35%
             // Скелет - 25%
             // Паук - 20%
@@ -89,7 +90,7 @@ namespace MineAdventure
             return false;
         }
 
-        public bool KillMob(Player player) // Атака моба
+        public bool KillMob(Player player, PlayerForm playerForm) // Атака моба
         {
             bool killMob = false;
 
@@ -100,9 +101,12 @@ namespace MineAdventure
 
                 Sound sound = new Sound(nameMob, healthMob); // Звук
                 sound.PlayMobSound(); // Проигрываем звук
-                
+
                 if (healthMob <= 0)
+                {
                     pbMob.Visible = false;
+                    playerForm.DropSomeItems(nameMob);
+                }
                 else
                     pbMob.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" +
                         healthMob / player.powerHit + ".png");

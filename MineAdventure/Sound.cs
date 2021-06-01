@@ -21,9 +21,14 @@ namespace MineAdventure
         public void PlayBlockSound()
         {
             Random rnd = new Random();
-            SoundPlayer sound = new SoundPlayer("../../Sounds/Blocks/" + nameObject + "/" +
-                nameObject + rnd.Next(1,4) + ".wav");
+            SoundPlayer sound;
+            if (nameObject == "Dirt")
+                sound = new SoundPlayer("../../Sounds/Blocks/" + nameObject + "/" +
+                    nameObject + rnd.Next(1, 4) + ".wav");
+            else
+                sound = new SoundPlayer("../../Sounds/Blocks/Stone/Stone" + rnd.Next(1, 4) + ".wav");
             sound.Play();
+
         }
 
         public void PlayMobSound()

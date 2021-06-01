@@ -15,9 +15,9 @@ namespace MineAdventure
         public string nameBlock; // Имя блока
         public int healthBlock; // Прочность
 
-        public Block(int randomNumber, PictureBox pictureBox) // Случайный блок
+        public Block(int randomNumber, PictureBox pb) // Случайный блок
         {
-            pbBlock = pictureBox;
+            pbBlock = pb;
 
             // Земля - 30%
             // Камень - 25%
@@ -38,22 +38,22 @@ namespace MineAdventure
             }
             else if (randomNumber > 55 && randomNumber <= 74)
             {
-                nameBlock = "Coal";
+                nameBlock = "CoalOre";
                 healthBlock = 7;
             }
             else if (randomNumber > 74 && randomNumber <= 88)
             {
-                nameBlock = "Iron";
+                nameBlock = "IronOre";
                 healthBlock = 8;
             }
             else if (randomNumber > 88 && randomNumber <= 97)
             {
-                nameBlock = "Gold";
+                nameBlock = "GoldOre";
                 healthBlock = 9;
             }
             else
             {
-                nameBlock = "Diamond";
+                nameBlock = "DiamondOre";
                 healthBlock = 10;
             }
             pbBlock.BackgroundImage = Image.FromFile("../../Images/Blocks/" + nameBlock + ".png");
@@ -89,7 +89,7 @@ namespace MineAdventure
             return false;
         }
 
-        public bool CrashBlock(Player player)
+        public bool CrashBlock(Player player, PlayerForm playerForm)
         {
             bool crashBlock = false;
 
@@ -101,8 +101,11 @@ namespace MineAdventure
                 sound.PlayBlockSound(); // Проигрываем звук
 
                 if (healthBlock <= 0)
+                {
                     pbBlock.Visible = false;
-                else 
+                    playerForm.DropSomeItems(nameBlock);
+                }
+                else
                     pbBlock.Image = Image.FromFile("../../Images/DestroyStages/DestroyStage" +
                         healthBlock / player.powerDig + ".png");
             }
